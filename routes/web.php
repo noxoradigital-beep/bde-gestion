@@ -11,7 +11,7 @@ use App\Http\Controllers\StatistiqueController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->to(auth()->check() ? route('dashboard') : route('login'));
 });
 
 Route::get('/dashboard', function () {
