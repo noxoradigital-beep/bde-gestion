@@ -18,7 +18,14 @@ class EvenementFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nom' => $this->faker->randomElement([
+                'Soirée d\'intégration', 'Tournoi de foot', 'Gala de fin d\'année',
+                'Afterwork BDE', 'Journée sportive', 'Barbecue de rentrée',
+            ]),
+            'date' => $this->faker->dateTimeBetween('-2 months', '+2 months'),
+            'lieu' => $this->faker->randomElement(['Toulon', 'La Garde', 'Campus ESGI', null]),
+            'description' => $this->faker->optional()->sentence(),
+            'capacite' => $this->faker->optional()->numberBetween(20, 150),
         ];
     }
 }

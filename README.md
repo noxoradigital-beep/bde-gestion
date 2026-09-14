@@ -31,6 +31,17 @@ php artisan serve
 
 Le site est alors accessible sur http://127.0.0.1:8000. Créer un compte membre BDE via `/register`.
 
+## Données de démo
+
+Aucune vraie donnée d'étudiant n'est versionnée dans le dépôt (RGPD). Pour avoir des étudiants et événements de test en local :
+
+```bash
+php artisan db:seed
+```
+
+Crée 30 étudiants fictifs, 5 événements et un compte membre BDE de démo :
+`demo@bde.local` / `password`.
+
 ## Fonctionnalités couvertes (voir le cahier des charges pour le détail)
 
 - Authentification + double authentification (TOTP) pour les membres BDE
