@@ -18,8 +18,8 @@
                     <x-nav-link :href="route('etudiants.index')" :active="request()->routeIs('etudiants.*')">
                         Étudiants
                     </x-nav-link>
-                    <x-nav-link :href="route('evenements.index')" :active="request()->routeIs('evenements.*')">
-                        Événements
+                    <x-nav-link :href="route('planning.index')" :active="request()->routeIs('planning.*') || request()->routeIs('evenements.*')">
+                        Planning
                     </x-nav-link>
                     <x-nav-link :href="route('statistiques.index')" :active="request()->routeIs('statistiques.*')">
                         Statistiques
@@ -82,8 +82,8 @@
             <x-responsive-nav-link :href="route('etudiants.index')" :active="request()->routeIs('etudiants.*')">
                 Étudiants
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('evenements.index')" :active="request()->routeIs('evenements.*')">
-                Événements
+            <x-responsive-nav-link :href="route('planning.index')" :active="request()->routeIs('planning.*') || request()->routeIs('evenements.*')">
+                Planning
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('statistiques.index')" :active="request()->routeIs('statistiques.*')">
                 Statistiques

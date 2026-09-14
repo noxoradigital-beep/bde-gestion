@@ -6,6 +6,7 @@ use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ParticipationController;
+use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatistiqueController;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/etudiants-import', [ImportController::class, 'create'])->name('etudiants.import');
     Route::post('/etudiants-import', [ImportController::class, 'store'])->name('etudiants.import.store');
     Route::get('/etudiants-export', [ExportController::class, 'etudiants'])->name('etudiants.export');
+
+    Route::get('/planning', [PlanningController::class, 'index'])->name('planning.index');
 
     Route::resource('evenements', EvenementController::class);
     Route::get('/evenements-export', [ExportController::class, 'evenements'])->name('evenements.export');
