@@ -42,6 +42,44 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="bg-white shadow-sm sm:rounded-lg p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-semibold text-gray-800">Invitations</h3>
+                    <form method="POST" action="{{ route('invitations.store') }}">
+                        @csrf
+                        <x-primary-button>Générer un lien d'invitation</x-primary-button>
+                    </form>
+                </div>
+
+                <p class="text-xs text-gray-500 mb-4">
+                    Un lien est valable 3 jours et ne peut servir qu'une seule fois. L'inscription libre est fermée :
+                    seule une personne avec un lien valide peut créer un compte membre BDE.
+                </p>
+
+                <ul class="divide-y divide-gray-100 text-sm">
+                    @forelse ($invitations as $invitation)
+                        <li class="py-2">
+                            @if ($invitation->used_at)
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-600">Utilisée</span>
+                                <span class="text-gray-500">par {{ $invitation->utilisateur?->name ?? 'un compte supprimé' }} le {{ $invitation->used_at->format('d/m/Y') }}</span>
+                            @elseif ($invitation->estValide())
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-green-100 text-green-700">Active</span>
+                                <span class="text-gray-500">expire le {{ $invitation->expires_at->format('d/m/Y H:i') }}, générée par {{ $invitation->createur?->name }}</span>
+                                <div class="mt-1">
+                                    <input type="text" readonly onclick="this.select()" value="{{ route('register', ['token' => $invitation->token]) }}"
+                                        class="w-full text-xs rounded-md border-gray-300 bg-gray-50 font-mono">
+                                </div>
+                            @else
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-red-100 text-red-700">Expirée</span>
+                                <span class="text-gray-500">le {{ $invitation->expires_at->format('d/m/Y') }}, générée par {{ $invitation->createur?->name }}</span>
+                            @endif
+                        </li>
+                    @empty
+                        <li class="py-2 text-gray-500">Aucune invitation générée pour le moment.</li>
+                    @endforelse
+                </ul>
+            </div>
         </div>
     </div>
 </x-app-layout>

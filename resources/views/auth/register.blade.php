@@ -1,5 +1,9 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    @isset($token)
+        <p class="text-sm text-gray-600 mb-4">Tu as été invité(e) à rejoindre l'espace de gestion du BDE.</p>
+    @endisset
+
+    <form method="POST" action="{{ route('register', ['token' => $token ?? null]) }}">
         @csrf
 
         <!-- Name -->

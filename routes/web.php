@@ -5,6 +5,7 @@ use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\ParticipationController;
 use App\Http\Controllers\PlanningController;
@@ -55,6 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('/membres', [MembreController::class, 'index'])->name('membres.index');
         Route::patch('/membres/{membre}', [MembreController::class, 'update'])->name('membres.update');
+        Route::post('/invitations', [InvitationController::class, 'store'])->name('invitations.store');
     });
 });
 

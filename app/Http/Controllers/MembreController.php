@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invitation;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,8 +13,9 @@ class MembreController extends Controller
     public function index(): View
     {
         $membres = User::orderBy('name')->get();
+        $invitations = Invitation::with('createur', 'utilisateur')->latest()->get();
 
-        return view('membres.index', compact('membres'));
+        return view('membres.index', compact('membres', 'invitations'));
     }
 
     public function update(Request $request, User $membre): RedirectResponse

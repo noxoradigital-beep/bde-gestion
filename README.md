@@ -29,7 +29,9 @@ npm run build
 php artisan serve
 ```
 
-Le site est alors accessible sur http://127.0.0.1:8000. Créer un compte membre BDE via `/register`.
+Le site est alors accessible sur http://127.0.0.1:8000. Le tout premier compte créé via `/register` devient
+automatiquement administrateur. Ensuite, l'inscription libre se ferme : les nouveaux membres doivent recevoir
+un lien d'invitation (généré depuis la page "Membres BDE", valable 3 jours, usage unique).
 
 ## Données de démo
 
@@ -52,13 +54,14 @@ Compte membre BDE de démo : `demo@bde.local` / `password`.
 ## Fonctionnalités couvertes (voir le cahier des charges pour le détail)
 
 - Authentification + double authentification (TOTP) pour les membres BDE
+- Inscription par invitation (lien temporaire, usage unique, réservé aux admins)
+- Rôles Admin / Membre BDE, page de gestion des membres
 - CRUD étudiants, import CSV, export CSV
-- CRUD événements, gestion des participants et de leur présence, export CSV
+- CRUD événements payants ou gratuits, gestion des participants, de leur présence et de leur paiement, export CSV
 - Statistiques d'activité (par classe, par événement)
 
 ## Points restants (à répartir en équipe)
 
 - Fiche d'équipe et répartition des rôles
-- Rôles/permissions différenciés entre membres BDE (admin / membre simple)
 - Design (aucune maquette fournie dans le brief initial : Tailwind par défaut de Breeze pour l'instant)
 - Décider si les étudiants ont un compte pour s'inscrire eux-mêmes aux événements

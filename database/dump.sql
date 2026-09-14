@@ -94,36 +94,36 @@ CREATE TABLE `etudiants` (
 LOCK TABLES `etudiants` WRITE;
 /*!40000 ALTER TABLE `etudiants` DISABLE KEYS */;
 INSERT INTO `etudiants` VALUES
-(1,'Lefebvre','Maggie','mwagner@example.com','M1',NULL,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(2,'Charles','Bernard','jacquet.maurice@example.net','M1',NULL,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(3,'Boutin','Stéphane','pdesousa@example.net','M2',NULL,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(4,'Leveque','François','ulejeune@example.org','B3','Dev','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(5,'Dumont','Sébastien','ldurand@example.net','B3','Reseaux','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(6,'Dias','Véronique','corinne.regnier@example.net','B3',NULL,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(7,'Leduc','Élise','tristan67@example.org','B3','Data','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(8,'Jacques','Étienne','paul.perrot@example.org','M1',NULL,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(9,'Bernier','Jean','ppinto@example.net','M2','Dev','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(10,'Chevalier','Grégoire','marie93@example.com','B1','Data','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(11,'Remy','Olivie','jreynaud@example.net','B2','Data','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(12,'Schneider','Sophie','ihubert@example.org','B2','Cyber','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(13,'Remy','Alfred','renard.rene@example.com','M2',NULL,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(14,'Roy','Auguste','ines.dumont@example.org','B1',NULL,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(15,'Guillaume','Marcelle','seguin.jerome@example.org','M1','Cyber','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(16,'Fernandes','Manon','brodrigues@example.com','M1','Dev','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(17,'Robert','Sébastien','fcollet@example.com','B2','Dev','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(18,'Seguin','Lucie','legall.renee@example.net','B1','Dev','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(19,'Guillaume','Mathilde','claire56@example.com','M1','Reseaux','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(20,'Thierry','Jean','petit.anais@example.org','B2','Reseaux','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(21,'Perrin','Adélaïde','rlefort@example.org','B2','Cyber','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(22,'Samson','Pierre','adrienne.adam@example.net','B3','Dev','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(23,'Grondin','Andrée','julien58@example.net','B1',NULL,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(24,'Baudry','Adélaïde','christelle.rolland@example.com','B1','Dev','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(25,'Dumas','Raymond','xmorvan@example.org','M1','Cyber','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(26,'Delattre','Colette','mnormand@example.com','B3',NULL,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(27,'Bouchet','Constance','cleconte@example.org','B1','Dev','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(28,'Barre','Hugues','anais69@example.org','B3','Dev','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(29,'Godard','Marcel','martin.laroche@example.org','B3','Cyber','2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(30,'Bigot','Josette','gilbert.lacroix@example.com','M2','Reseaux','2026-09-14 12:13:11','2026-09-14 12:13:11');
+(1,'Mallet','Philippe','michel.robert@example.org','B2',NULL,'2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(2,'Auger','Monique','ddelahaye@example.net','M2','Dev','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(3,'Nguyen','Pauline','yves11@example.net','B2','Data','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(4,'Paris','Alain','lombard.oceane@example.net','B1','Data','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(5,'Aubert','Alain','plebrun@example.net','B1','Reseaux','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(6,'Guyon','Rémy','rey.guillaume@example.org','M2','Reseaux','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(7,'Bouvier','Jean','fhuet@example.com','M1','Dev','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(8,'Reynaud','Hélène','rlamy@example.com','M2',NULL,'2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(9,'Chauveau','Véronique','pasquier.frederic@example.com','B2','Data','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(10,'Guyon','Benoît','oceane.ollivier@example.com','M1','Cyber','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(11,'Jacques','Denis','leconte.martine@example.org','B2',NULL,'2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(12,'De Sousa','Yves','julien77@example.net','M1','Data','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(13,'Roussel','Marguerite','charles.gillet@example.net','M1','Cyber','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(14,'Renault','André','kdaniel@example.com','B3','Reseaux','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(15,'Vallet','Jean','qmarion@example.com','B1',NULL,'2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(16,'Hubert','Marc','alemaire@example.net','B2','Reseaux','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(17,'Gillet','Françoise','pdelaunay@example.com','M1','Reseaux','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(18,'Julien','Augustin','elise.leger@example.org','B2','Data','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(19,'Gillet','Rémy','emilie.jacques@example.com','B1','Data','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(20,'Leveque','Georges','auguste39@example.com','M1','Cyber','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(21,'Brunel','Augustin','audrey.samson@example.net','B2','Cyber','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(22,'Bouchet','Clémence','paulette24@example.com','B3','Data','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(23,'Nicolas','Yves','aimee21@example.net','M2','Cyber','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(24,'Poulain','Guy','valentin.susanne@example.com','M1','Data','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(25,'Lebrun','Charlotte','diaz.martin@example.net','B3',NULL,'2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(26,'Thibault','Éric','patrick.charpentier@example.org','B1','Reseaux','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(27,'Leconte','Sophie','chauvin.constance@example.org','M1',NULL,'2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(28,'Delahaye','Christine','perrier.zacharie@example.com','B2',NULL,'2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(29,'Robin','Brigitte','cecile.bousquet@example.com','B3','Data','2026-09-14 12:28:15','2026-09-14 12:28:15'),
+(30,'Benoit','Chantal','dcharles@example.org','M2','Reseaux','2026-09-14 12:28:15','2026-09-14 12:28:15');
 /*!40000 ALTER TABLE `etudiants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,11 +159,11 @@ CREATE TABLE `evenements` (
 LOCK TABLES `evenements` WRITE;
 /*!40000 ALTER TABLE `evenements` DISABLE KEYS */;
 INSERT INTO `evenements` VALUES
-(1,'Gala de fin d\'année','2026-07-26 18:44:23','Toulon',NULL,21,0,NULL,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(2,'Tournoi de foot','2026-08-25 17:18:17','La Garde','Quos minima laudantium nobis veritatis voluptates et aperiam mollitia.',NULL,0,NULL,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(3,'Soirée d\'intégration','2026-08-04 12:58:14','Campus ESGI',NULL,NULL,1,3.00,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(4,'Soirée d\'intégration','2026-08-16 12:13:57','Campus ESGI',NULL,NULL,1,10.00,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(5,'Gala de fin d\'année','2026-10-15 11:05:38','Toulon','Consectetur ipsa aut quia eveniet delectus non temporibus.',NULL,1,3.00,1,'2026-09-14 12:13:11','2026-09-14 12:13:11');
+(1,'Afterwork BDE','2026-10-24 19:38:35',NULL,'Qui iure aut consectetur ratione voluptatem sunt.',NULL,1,5.00,1,'2026-09-14 12:28:15','2026-09-14 12:28:16'),
+(2,'Barbecue de rentrée','2026-10-26 01:13:34','Toulon',NULL,50,0,NULL,1,'2026-09-14 12:28:15','2026-09-14 12:28:16'),
+(3,'Journée sportive','2026-11-08 04:04:24','Toulon',NULL,40,1,5.00,1,'2026-09-14 12:28:15','2026-09-14 12:28:16'),
+(4,'Gala de fin d\'année','2026-11-13 09:27:32','La Garde',NULL,117,0,NULL,1,'2026-09-14 12:28:15','2026-09-14 12:28:16'),
+(5,'Gala de fin d\'année','2026-10-17 01:03:56','La Garde',NULL,NULL,0,NULL,1,'2026-09-14 12:28:15','2026-09-14 12:28:16');
 /*!40000 ALTER TABLE `evenements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,6 +195,40 @@ CREATE TABLE `failed_jobs` (
 LOCK TABLES `failed_jobs` WRITE;
 /*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `invitations`
+--
+
+DROP TABLE IF EXISTS `invitations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8mb4 */;
+CREATE TABLE `invitations` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `token` varchar(64) NOT NULL,
+  `created_by` bigint(20) unsigned NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `used_at` datetime DEFAULT NULL,
+  `used_by` bigint(20) unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `invitations_token_unique` (`token`),
+  KEY `invitations_created_by_foreign` (`created_by`),
+  KEY `invitations_used_by_foreign` (`used_by`),
+  CONSTRAINT `invitations_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `invitations_used_by_foreign` FOREIGN KEY (`used_by`) REFERENCES `users` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `invitations`
+--
+
+LOCK TABLES `invitations` WRITE;
+/*!40000 ALTER TABLE `invitations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `invitations` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -269,7 +303,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -288,7 +322,8 @@ INSERT INTO `migrations` VALUES
 (7,'2026_09_14_104412_create_participations_table',1),
 (8,'2026_09_14_140716_add_payant_prix_to_evenements_table',1),
 (9,'2026_09_14_140717_add_paye_to_participations_table',1),
-(10,'2026_09_14_140718_add_role_to_users_table',1);
+(10,'2026_09_14_140718_add_role_to_users_table',1),
+(11,'2026_09_14_142533_create_invitations_table',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -312,7 +347,7 @@ CREATE TABLE `participations` (
   KEY `participations_evenement_id_foreign` (`evenement_id`),
   CONSTRAINT `participations_etudiant_id_foreign` FOREIGN KEY (`etudiant_id`) REFERENCES `etudiants` (`id`) ON DELETE CASCADE,
   CONSTRAINT `participations_evenement_id_foreign` FOREIGN KEY (`evenement_id`) REFERENCES `evenements` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -322,67 +357,51 @@ CREATE TABLE `participations` (
 LOCK TABLES `participations` WRITE;
 /*!40000 ALTER TABLE `participations` DISABLE KEYS */;
 INSERT INTO `participations` VALUES
-(1,2,1,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(2,9,1,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(3,11,1,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(4,12,1,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(5,13,1,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(6,14,1,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(7,15,1,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(8,16,1,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(9,17,1,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(10,18,1,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(11,19,1,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(12,22,1,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(13,29,1,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(14,30,1,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(15,3,2,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(16,5,2,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(17,7,2,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(18,10,2,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(19,13,2,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(20,20,2,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(21,21,2,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(22,7,3,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(23,8,3,1,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(24,10,3,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(25,11,3,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(26,14,3,1,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(27,17,3,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(28,18,3,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(29,27,3,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(30,29,3,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(31,30,3,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(32,1,4,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(33,2,4,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(34,12,4,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(35,18,4,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(36,19,4,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(37,20,4,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(38,22,4,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(39,23,4,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(40,24,4,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(41,25,4,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(42,26,4,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(43,27,4,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(44,28,4,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(45,29,4,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(46,30,4,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(47,3,5,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(48,5,5,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(49,6,5,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(50,8,5,1,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(51,10,5,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(52,11,5,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(53,13,5,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(54,15,5,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(55,16,5,1,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(56,17,5,1,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(57,21,5,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(58,22,5,0,0,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(59,23,5,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(60,25,5,0,1,'2026-09-14 12:13:11','2026-09-14 12:13:11'),
-(61,26,5,1,1,'2026-09-14 12:13:11','2026-09-14 12:13:11');
+(1,4,1,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(2,5,1,1,1,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(3,6,1,1,1,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(4,9,1,0,1,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(5,10,1,0,1,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(6,13,1,1,1,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(7,14,1,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(8,15,1,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(9,17,1,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(10,18,1,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(11,19,1,1,1,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(12,20,1,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(13,25,1,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(14,27,1,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(15,2,2,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(16,3,2,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(17,4,2,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(18,6,2,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(19,8,2,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(20,9,2,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(21,13,2,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(22,18,2,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(23,6,3,1,1,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(24,12,3,1,1,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(25,13,3,0,1,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(26,16,3,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(27,18,3,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(28,22,3,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(29,25,3,0,1,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(30,26,3,1,1,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(31,30,3,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(32,3,4,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(33,9,4,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(34,10,4,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(35,17,4,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(36,21,4,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(37,22,4,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(38,26,4,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(39,29,4,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(40,30,4,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(41,7,5,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(42,15,5,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(43,16,5,0,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(44,17,5,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16'),
+(45,20,5,1,0,'2026-09-14 12:28:16','2026-09-14 12:28:16');
 /*!40000 ALTER TABLE `participations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -470,7 +489,7 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(1,'Membre BDE (démo)','demo@bde.local','admin','2026-09-14 12:13:11','$2y$12$z9CuKS5jJcEq9Jd8TiZXwO5uI6BamS6o8pP4itjolPpVJl3LFBaXG',NULL,0,'Iosy3BEOig','2026-09-14 12:13:11','2026-09-14 12:13:11');
+(1,'Membre BDE (démo)','demo@bde.local','admin','2026-09-14 12:28:15','$2y$12$012TvkUa/eD63Na00eA1oOoUPq8HZ2GnQxGnYp0gGVF9rvNwvZx6e',NULL,0,'e9ch6oITBB','2026-09-14 12:28:15','2026-09-14 12:28:15');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -483,4 +502,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-14 16:13:11
+-- Dump completed on 2026-09-14 16:28:16
