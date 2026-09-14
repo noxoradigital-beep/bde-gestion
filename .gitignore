@@ -1,5 +1,8 @@
 *.log
 .DS_Store
+AGENTS.md
+CLAUDE.md
+boost.json
 .env
 .env.backup
 .env.production
