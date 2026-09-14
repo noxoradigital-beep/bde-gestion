@@ -33,14 +33,21 @@ Le site est alors accessible sur http://127.0.0.1:8000. Créer un compte membre 
 
 ## Données de démo
 
-Aucune vraie donnée d'étudiant n'est versionnée dans le dépôt (RGPD). Pour avoir des étudiants et événements de test en local :
+Aucune vraie donnée d'étudiant n'est versionnée dans le dépôt (RGPD) : `database/dump.sql` ne contient
+que des étudiants et événements fictifs (générés par Faker), jamais de vraies infos. À ne plus commiter
+une fois que la base contient de vrais étudiants.
+
+Deux façons d'avoir les mêmes données de test en local :
 
 ```bash
+# Option 1 : régénérer des données fictives (différentes à chaque fois)
 php artisan db:seed
+
+# Option 2 : importer exactement le même jeu de données que dans le dépôt
+mysql -u <utilisateur> -p <votre_base> < database/dump.sql
 ```
 
-Crée 30 étudiants fictifs, 5 événements et un compte membre BDE de démo :
-`demo@bde.local` / `password`.
+Compte membre BDE de démo : `demo@bde.local` / `password`.
 
 ## Fonctionnalités couvertes (voir le cahier des charges pour le détail)
 
