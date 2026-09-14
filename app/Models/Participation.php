@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Participation extends Model
 {
-    protected $fillable = ['etudiant_id', 'evenement_id', 'present'];
+    protected $fillable = ['etudiant_id', 'evenement_id', 'present', 'paye'];
 
     protected $casts = [
         'present' => 'boolean',
+        'paye' => 'boolean',
     ];
 
     public function etudiant(): BelongsTo

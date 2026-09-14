@@ -25,6 +25,22 @@
     <x-input-error :messages="$errors->get('capacite')" class="mt-1" />
 </div>
 
+<div x-data="{ payant: {{ old('payant', $ev?->payant) ? 'true' : 'false' }} }">
+    <label class="inline-flex items-center">
+        <input type="hidden" name="payant" value="0">
+        <input type="checkbox" name="payant" value="1" x-model="payant"
+            {{ old('payant', $ev?->payant) ? 'checked' : '' }}
+            class="rounded border-gray-300 text-gray-800 shadow-sm">
+        <span class="ms-2 text-sm text-gray-700">Événement payant</span>
+    </label>
+
+    <div class="mt-2" x-show="payant" x-cloak>
+        <x-input-label for="prix" value="Prix (€)" />
+        <x-text-input id="prix" type="number" step="0.01" min="0" name="prix" value="{{ old('prix', $ev?->prix) }}" class="mt-1 block w-full" />
+        <x-input-error :messages="$errors->get('prix')" class="mt-1" />
+    </div>
+</div>
+
 <div>
     <x-input-label for="description" value="Description (facultatif)" />
     <textarea id="description" name="description" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm text-sm">{{ old('description', $ev?->description) }}</textarea>

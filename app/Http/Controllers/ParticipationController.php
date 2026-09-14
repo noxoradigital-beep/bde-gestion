@@ -15,7 +15,7 @@ class ParticipationController extends Controller
         ]);
 
         $evenement->etudiants()->syncWithoutDetaching([
-            $data['etudiant_id'] => ['present' => false],
+            $data['etudiant_id'] => ['present' => false, 'paye' => false],
         ]);
 
         return redirect()->route('evenements.show', $evenement)->with('status', 'Participant ajouté.');
@@ -28,6 +28,19 @@ class ParticipationController extends Controller
         if ($participation) {
             $evenement->etudiants()->updateExistingPivot($etudiant, [
                 'present' => ! $participation->pivot->present,
+            ]);
+        }
+
+        return redirect()->route('evenements.show', $evenement);
+    }
+
+    public function togglePaiement(Evenement $evenement, int $etudiant): RedirectResponse
+    {
+        $participation = $evenement->etudiants()->where('etudiants.id', $etudiant)->first();
+
+        if ($participation) {
+            $evenement->etudiants()->updateExistingPivot($etudiant, [
+                'paye' => ! $participation->pivot->paye,
             ]);
         }
 

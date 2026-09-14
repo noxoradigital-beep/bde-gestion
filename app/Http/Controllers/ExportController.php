@@ -39,6 +39,22 @@ class ExportController extends Controller
         });
     }
 
+    public function paiements(Evenement $evenement): StreamedResponse
+    {
+        $nomFichier = 'paiements-'.$evenement->id.'.csv';
+
+        return $this->exporterCsv($nomFichier, ['Étudiant', 'Classe', 'A payé', 'Montant'], function ($sortie) use ($evenement) {
+            foreach ($evenement->etudiants as $etudiant) {
+                fputcsv($sortie, [
+                    $etudiant->nom.' '.$etudiant->prenom,
+                    $etudiant->classe,
+                    $etudiant->pivot->paye ? 'Oui' : 'Non',
+                    $etudiant->pivot->paye ? number_format((float) $evenement->prix, 2, ',', '') : '',
+                ]);
+            }
+        });
+    }
+
     private function exporterCsv(string $nomFichier, array $entetes, callable $ecrireLignes): StreamedResponse
     {
         $callback = function () use ($entetes, $ecrireLignes) {

@@ -16,6 +16,7 @@
                 <div><span class="text-gray-500">Date</span><p class="text-gray-900">{{ $evenement->date->format('d/m/Y H:i') }}</p></div>
                 <div><span class="text-gray-500">Lieu</span><p class="text-gray-900">{{ $evenement->lieu ?? 'Non renseigné' }}</p></div>
                 <div><span class="text-gray-500">Capacité</span><p class="text-gray-900">{{ $evenement->capacite ?? 'Illimitée' }}</p></div>
+                <div><span class="text-gray-500">Tarif</span><p class="text-gray-900">{{ $evenement->payant ? number_format((float) $evenement->prix, 2, ',', ' ').' €' : 'Gratuit' }}</p></div>
                 <div><span class="text-gray-500">Créé par</span><p class="text-gray-900">{{ $evenement->createur?->name ?? 'Non renseigné' }}</p></div>
                 @if ($evenement->description)
                     <div class="col-span-2"><span class="text-gray-500">Description</span><p class="text-gray-900">{{ $evenement->description }}</p></div>
@@ -23,7 +24,12 @@
             </div>
 
             <div class="bg-white shadow-sm sm:rounded-lg p-6">
-                <h3 class="font-semibold text-gray-800 mb-3">Participants ({{ $evenement->etudiants->count() }})</h3>
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="font-semibold text-gray-800">Participants ({{ $evenement->etudiants->count() }})</h3>
+                    @if ($evenement->payant)
+                        <a href="{{ route('evenements.paiements.export', $evenement) }}" class="text-sm text-gray-600 hover:underline">Exporter les paiements (CSV)</a>
+                    @endif
+                </div>
 
                 <form method="POST" action="{{ route('participations.store', $evenement) }}" class="flex gap-2 mb-4">
                     @csrf
@@ -47,6 +53,14 @@
                                         {{ $etudiant->pivot->present ? 'Présent' : 'Marquer présent' }}
                                     </button>
                                 </form>
+                                @if ($evenement->payant)
+                                    <form method="POST" action="{{ route('participations.paiement', [$evenement, $etudiant]) }}">
+                                        @csrf @method('PATCH')
+                                        <button type="submit" class="px-2 py-1 rounded text-xs {{ $etudiant->pivot->paye ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700' }}">
+                                            {{ $etudiant->pivot->paye ? 'A payé' : "N'a pas payé" }}
+                                        </button>
+                                    </form>
+                                @endif
                                 <form method="POST" action="{{ route('participations.destroy', [$evenement, $etudiant]) }}" onsubmit="return confirm('Retirer ce participant ?');">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="text-red-500 hover:text-red-700 text-xs">Retirer</button>

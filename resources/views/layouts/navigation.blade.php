@@ -24,6 +24,11 @@
                     <x-nav-link :href="route('statistiques.index')" :active="request()->routeIs('statistiques.*')">
                         Statistiques
                     </x-nav-link>
+                    @if (auth()->user()->isAdmin())
+                        <x-nav-link :href="route('membres.index')" :active="request()->routeIs('membres.*')">
+                            Membres BDE
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -88,6 +93,11 @@
             <x-responsive-nav-link :href="route('statistiques.index')" :active="request()->routeIs('statistiques.*')">
                 Statistiques
             </x-responsive-nav-link>
+            @if (auth()->user()->isAdmin())
+                <x-responsive-nav-link :href="route('membres.index')" :active="request()->routeIs('membres.*')">
+                    Membres BDE
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

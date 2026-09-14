@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password', 'google2fa_secret', 'two_factor_enabled'])]
+#[Fillable(['name', 'email', 'password', 'role', 'google2fa_secret', 'two_factor_enabled'])]
 #[Hidden(['password', 'remember_token', 'google2fa_secret'])]
 class User extends Authenticatable
 {
@@ -35,5 +35,10 @@ class User extends Authenticatable
     public function evenementsCrees(): HasMany
     {
         return $this->hasMany(Evenement::class, 'cree_par');
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
     }
 }

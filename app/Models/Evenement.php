@@ -13,16 +13,18 @@ class Evenement extends Model
     /** @use HasFactory<EvenementFactory> */
     use HasFactory;
 
-    protected $fillable = ['nom', 'date', 'lieu', 'description', 'capacite', 'cree_par'];
+    protected $fillable = ['nom', 'date', 'lieu', 'description', 'capacite', 'payant', 'prix', 'cree_par'];
 
     protected $casts = [
         'date' => 'datetime',
+        'payant' => 'boolean',
+        'prix' => 'decimal:2',
     ];
 
     public function etudiants(): BelongsToMany
     {
         return $this->belongsToMany(Etudiant::class, 'participations')
-            ->withPivot('present')
+            ->withPivot('present', 'paye')
             ->withTimestamps();
     }
 

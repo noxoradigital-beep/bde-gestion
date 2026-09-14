@@ -5,6 +5,7 @@ use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\MembreController;
 use App\Http\Controllers\ParticipationController;
 use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\ProfileController;
@@ -43,11 +44,18 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('evenements', EvenementController::class);
     Route::get('/evenements-export', [ExportController::class, 'evenements'])->name('evenements.export');
+    Route::get('/evenements/{evenement}/paiements-export', [ExportController::class, 'paiements'])->name('evenements.paiements.export');
     Route::post('/evenements/{evenement}/participants', [ParticipationController::class, 'store'])->name('participations.store');
     Route::patch('/evenements/{evenement}/participants/{etudiant}/presence', [ParticipationController::class, 'togglePresence'])->name('participations.presence');
+    Route::patch('/evenements/{evenement}/participants/{etudiant}/paiement', [ParticipationController::class, 'togglePaiement'])->name('participations.paiement');
     Route::delete('/evenements/{evenement}/participants/{etudiant}', [ParticipationController::class, 'destroy'])->name('participations.destroy');
 
     Route::get('/statistiques', [StatistiqueController::class, 'index'])->name('statistiques.index');
+
+    Route::middleware('admin')->group(function () {
+        Route::get('/membres', [MembreController::class, 'index'])->name('membres.index');
+        Route::patch('/membres/{membre}', [MembreController::class, 'update'])->name('membres.update');
+    });
 });
 
 require __DIR__.'/auth.php';

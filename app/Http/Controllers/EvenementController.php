@@ -32,7 +32,12 @@ class EvenementController extends Controller
             'lieu' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'capacite' => ['nullable', 'integer', 'min:1'],
+            'payant' => ['nullable', 'boolean'],
+            'prix' => ['nullable', 'required_if:payant,1', 'numeric', 'min:0'],
         ]);
+
+        $data['payant'] = $request->boolean('payant');
+        $data['prix'] = $data['payant'] ? $data['prix'] : null;
 
         $data['cree_par'] = $request->user()->id;
 
@@ -65,7 +70,12 @@ class EvenementController extends Controller
             'lieu' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'capacite' => ['nullable', 'integer', 'min:1'],
+            'payant' => ['nullable', 'boolean'],
+            'prix' => ['nullable', 'required_if:payant,1', 'numeric', 'min:0'],
         ]);
+
+        $data['payant'] = $request->boolean('payant');
+        $data['prix'] = $data['payant'] ? $data['prix'] : null;
 
         $evenement->update($data);
 

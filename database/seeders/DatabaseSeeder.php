@@ -20,16 +20,24 @@ class DatabaseSeeder extends Seeder
         $membreBde = User::factory()->create([
             'name' => 'Membre BDE (démo)',
             'email' => 'demo@bde.local',
+            'role' => 'admin',
         ]);
 
         $etudiants = Etudiant::factory(30)->create();
 
         Evenement::factory(5)->create(['cree_par' => $membreBde->id])->each(function (Evenement $evenement) use ($etudiants) {
             $participants = $etudiants->random(random_int(5, 15));
+            $payant = (bool) random_int(0, 1);
+
+            $evenement->update([
+                'payant' => $payant,
+                'prix' => $payant ? fake()->randomElement([3, 5, 8, 10]) : null,
+            ]);
 
             foreach ($participants as $etudiant) {
                 $evenement->etudiants()->attach($etudiant->id, [
                     'present' => (bool) random_int(0, 1),
+                    'paye' => $payant ? (bool) random_int(0, 1) : false,
                 ]);
             }
         });
