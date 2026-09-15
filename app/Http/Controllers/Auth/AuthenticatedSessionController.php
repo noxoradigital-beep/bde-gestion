@@ -28,6 +28,8 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
+        // Email + mot de passe corrects, mais si la 2FA est activée : on déconnecte tout de
+        // suite et on renvoie vers l'écran "entre ton code" (TwoFactorController::challenge).
         if ($user->two_factor_enabled) {
             $intended = redirect()->intended(route('dashboard', absolute: false))->getTargetUrl();
 

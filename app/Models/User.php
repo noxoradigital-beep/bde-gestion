@@ -11,8 +11,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+// Un membre BDE : nom, email, mot de passe, rôle (admin/membre), double authentification (2FA).
 #[Fillable(['name', 'email', 'password', 'role', 'google2fa_secret', 'two_factor_enabled'])]
-#[Hidden(['password', 'remember_token', 'google2fa_secret'])]
+#[Hidden(['password', 'remember_token', 'google2fa_secret'])] // jamais affichés/exportés, même par erreur
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -32,11 +33,13 @@ class User extends Authenticatable
         ];
     }
 
+    // Les événements créés par ce membre.
     public function evenementsCrees(): HasMany
     {
         return $this->hasMany(Evenement::class, 'cree_par');
     }
 
+    // Vrai si ce membre a le rôle admin (utilisé par le middleware EnsureUserIsAdmin).
     public function isAdmin(): bool
     {
         return $this->role === 'admin';

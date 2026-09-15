@@ -8,8 +8,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+// CRUD événements (créer, lire, modifier, supprimer) + gestion payant/gratuit.
 class EvenementController extends Controller
 {
+    // Liste des événements avec le nombre d'étudiants inscrits.
     public function index(): View
     {
         $evenements = Evenement::withCount('etudiants')
@@ -19,11 +21,13 @@ class EvenementController extends Controller
         return view('evenements.index', compact('evenements'));
     }
 
+    // Formulaire de création d'un événement.
     public function create(): View
     {
         return view('evenements.create');
     }
 
+    // Enregistre le nouvel événement. Si "payant" n'est pas coché, le prix est ignoré (mis à null).
     public function store(Request $request): RedirectResponse
     {
         $data = $request->validate([
@@ -46,6 +50,7 @@ class EvenementController extends Controller
         return redirect()->route('evenements.show', $evenement)->with('status', 'Événement créé.');
     }
 
+    // Fiche d'un événement : ses inscrits, + la liste des étudiants qu'on peut encore ajouter.
     public function show(Evenement $evenement): View
     {
         $evenement->load(['etudiants' => fn ($query) => $query->orderBy('nom')]);
@@ -57,11 +62,13 @@ class EvenementController extends Controller
         return view('evenements.show', compact('evenement', 'etudiantsDisponibles'));
     }
 
+    // Formulaire de modification d'un événement.
     public function edit(Evenement $evenement): View
     {
         return view('evenements.edit', compact('evenement'));
     }
 
+    // Enregistre les modifications de l'événement (même logique payant/prix que store).
     public function update(Request $request, Evenement $evenement): RedirectResponse
     {
         $data = $request->validate([
@@ -82,6 +89,7 @@ class EvenementController extends Controller
         return redirect()->route('evenements.show', $evenement)->with('status', 'Événement modifié.');
     }
 
+    // Supprime l'événement.
     public function destroy(Evenement $evenement): RedirectResponse
     {
         $evenement->delete();

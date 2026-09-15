@@ -8,8 +8,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+// Page "Membres BDE" (réservée aux admins) : liste des membres + leurs rôles + invitations.
 class MembreController extends Controller
 {
+    // Liste des membres BDE et des invitations envoyées.
     public function index(): View
     {
         $membres = User::orderBy('name')->get();
@@ -18,12 +20,14 @@ class MembreController extends Controller
         return view('membres.index', compact('membres', 'invitations'));
     }
 
+    // Change le rôle (admin/membre) d'un membre.
     public function update(Request $request, User $membre): RedirectResponse
     {
         $data = $request->validate([
             'role' => ['required', 'in:admin,membre'],
         ]);
 
+        // Garde-fou : on ne peut pas se retirer le rôle admin si on est le dernier admin.
         if ($membre->id === $request->user()->id && $data['role'] === 'membre') {
             $autresAdmins = User::where('role', 'admin')->where('id', '!=', $membre->id)->exists();
 

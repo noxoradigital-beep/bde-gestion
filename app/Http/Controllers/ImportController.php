@@ -7,8 +7,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+// Import d'une liste d'étudiants depuis un fichier CSV.
 class ImportController extends Controller
 {
+    // Formulaire d'import (choix du fichier CSV).
     public function create(): View
     {
         return view('etudiants.import');
@@ -17,6 +19,7 @@ class ImportController extends Controller
     /**
      * Import a CSV of students. Expected header row: nom,prenom,email,classe,option
      */
+    // Lit le fichier CSV ligne par ligne, vérifie chaque ligne, puis crée/met à jour les étudiants.
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -26,6 +29,7 @@ class ImportController extends Controller
         $chemin = $request->file('fichier')->getRealPath();
         $handle = fopen($chemin, 'r');
 
+        // Première ligne du fichier = les noms de colonnes (nom, prenom, email, classe, option).
         $entetes = array_map('strtolower', fgetcsv($handle, escape: '\\') ?: []);
         $colonnesAttendues = ['nom', 'prenom', 'email', 'classe', 'option'];
 
@@ -34,6 +38,7 @@ class ImportController extends Controller
         $erreurs = [];
         $ligne = 1;
 
+        // Une itération = une ligne du CSV = un étudiant à importer.
         while (($row = fgetcsv($handle, escape: '\\')) !== false) {
             $ligne++;
 
@@ -60,6 +65,7 @@ class ImportController extends Controller
                 continue;
             }
 
+            // Si l'email existe déjà, met à jour l'étudiant au lieu d'en créer un doublon.
             Etudiant::updateOrCreate(
                 ['email' => $donnees['email']],
                 [

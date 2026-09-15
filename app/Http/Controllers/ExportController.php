@@ -6,8 +6,10 @@ use App\Models\Etudiant;
 use App\Models\Evenement;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
+// Génère les fichiers CSV téléchargeables (export étudiants, événements, paiements).
 class ExportController extends Controller
 {
+    // Liste des étudiants en CSV (Nom, Prénom, Email, Classe, Option).
     public function etudiants(): StreamedResponse
     {
         return $this->exporterCsv('etudiants.csv', ['Nom', 'Prénom', 'Email', 'Classe', 'Option'], function ($sortie) {
@@ -19,6 +21,7 @@ class ExportController extends Controller
         });
     }
 
+    // Liste des événements en CSV, avec le nombre de participants et de présents.
     public function evenements(): StreamedResponse
     {
         return $this->exporterCsv('evenements.csv', ['Nom', 'Date', 'Lieu', 'Participants', 'Présents'], function ($sortie) {
@@ -39,6 +42,7 @@ class ExportController extends Controller
         });
     }
 
+    // Liste des paiements pour UN événement précis : qui a payé, combien.
     public function paiements(Evenement $evenement): StreamedResponse
     {
         $nomFichier = 'paiements-'.$evenement->id.'.csv';
@@ -55,6 +59,7 @@ class ExportController extends Controller
         });
     }
 
+    // Fonction commune aux 3 exports ci-dessus : crée le fichier CSV et l'envoie en téléchargement.
     private function exporterCsv(string $nomFichier, array $entetes, callable $ecrireLignes): StreamedResponse
     {
         $callback = function () use ($entetes, $ecrireLignes) {

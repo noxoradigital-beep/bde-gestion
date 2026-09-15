@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+// Ajoute des en-têtes de sécurité à chaque réponse du site (protection contre le
+// détournement de clics, l'injection de scripts, etc.). Ne change rien à l'affichage.
 class SecurityHeaders
 {
     public function handle(Request $request, Closure $next): Response

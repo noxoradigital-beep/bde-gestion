@@ -10,11 +10,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use PragmaRX\Google2FAQRCode\Google2FA;
 
+// Double authentification (2FA) : QR code à scanner avec une appli type Google Authenticator,
+// puis code à 6 chiffres demandé à chaque connexion.
 class TwoFactorController extends Controller
 {
     /**
      * Show the setup screen (QR code) to enable 2FA for the current user.
      */
+    // Affiche le QR code à scanner pour activer la 2FA (le secret est gardé en session le temps de la config).
     public function setup(Request $request): View|RedirectResponse
     {
         $user = $request->user();
@@ -42,6 +45,7 @@ class TwoFactorController extends Controller
     /**
      * Confirm the setup code and activate 2FA on the account.
      */
+    // Vérifie que l'utilisateur a bien scanné le QR code (code correct) avant d'activer la 2FA pour de vrai.
     public function enable(Request $request): RedirectResponse
     {
         $request->validate([
@@ -73,6 +77,7 @@ class TwoFactorController extends Controller
     /**
      * Disable 2FA on the current account.
      */
+    // Désactive la 2FA (redemande le mot de passe par sécurité).
     public function disable(Request $request): RedirectResponse
     {
         $request->validate([
@@ -90,6 +95,7 @@ class TwoFactorController extends Controller
     /**
      * Show the code challenge presented after a valid password, during login.
      */
+    // Affiche l'écran "entre ton code" après un mot de passe correct (login pas encore terminé).
     public function challenge(Request $request): View|RedirectResponse
     {
         if (! $request->session()->has('2fa.user_id')) {
@@ -102,6 +108,7 @@ class TwoFactorController extends Controller
     /**
      * Verify the challenge code and complete the login.
      */
+    // Vérifie le code à 6 chiffres puis termine réellement la connexion (Auth::login).
     public function verify(Request $request): RedirectResponse
     {
         $request->validate([
@@ -122,6 +129,7 @@ class TwoFactorController extends Controller
             return back()->withErrors(['code' => 'Code invalide.']);
         }
 
+        // Renvoie l'utilisateur vers la page qu'il voulait initialement visiter.
         $intended = $request->session()->pull('2fa.intended', route('dashboard', absolute: false));
         $request->session()->forget('2fa.user_id');
 

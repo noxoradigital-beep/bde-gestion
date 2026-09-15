@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatistiqueController;
 use Illuminate\Support\Facades\Route;
 
+// Page d'accueil : redirige direct vers le dashboard (si connecté) ou le login.
 Route::get('/', function () {
     return redirect()->to(auth()->check() ? route('dashboard') : route('login'));
 });
@@ -36,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/two-factor', [TwoFactorController::class, 'enable'])->name('two-factor.enable');
     Route::delete('/two-factor', [TwoFactorController::class, 'disable'])->name('two-factor.disable');
 
+    // ----- Étudiants : CRUD (resource = index/create/store/show/edit/update/destroy d'un coup) + import/export -----
     Route::resource('etudiants', EtudiantController::class);
     Route::get('/etudiants-import', [ImportController::class, 'create'])->name('etudiants.import');
     Route::post('/etudiants-import', [ImportController::class, 'store'])->name('etudiants.import.store');
@@ -43,6 +45,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/planning', [PlanningController::class, 'index'])->name('planning.index');
 
+    // ----- Événements : CRUD + export + gestion des participants (inscription, présence, paiement) -----
     Route::resource('evenements', EvenementController::class);
     Route::get('/evenements-export', [ExportController::class, 'evenements'])->name('evenements.export');
     Route::get('/evenements/{evenement}/paiements-export', [ExportController::class, 'paiements'])->name('evenements.paiements.export');
@@ -53,6 +56,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/statistiques', [StatistiqueController::class, 'index'])->name('statistiques.index');
 
+    // ----- Réservé aux admins (middleware "admin" = EnsureUserIsAdmin) -----
     Route::middleware('admin')->group(function () {
         Route::get('/membres', [MembreController::class, 'index'])->name('membres.index');
         Route::patch('/membres/{membre}', [MembreController::class, 'update'])->name('membres.update');
