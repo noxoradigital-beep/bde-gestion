@@ -15,8 +15,8 @@ class SecurityHeaders
         $response->headers->set('Content-Security-Policy-Report-Only',
             "default-src 'self'; " .
             "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " .
-            "style-src 'self' 'unsafe-inline' fonts.bunny.net; " .
-            "font-src 'self' fonts.bunny.net; " .
+            "style-src 'self'; " .
+            "font-src 'self'; " .
             "img-src 'self' data:; " .
             "frame-ancestors 'self'"
         );
