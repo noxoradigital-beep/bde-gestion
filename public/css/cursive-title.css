@@ -1,0 +1,68 @@
+/* ==========================================================
+   TITRES DE PAGE EN ECRITURE CURSIVE, DESSINES AU TRAIT
+   Utilise sur toutes les pages a titre fixe (Dashboard, Etudiants,
+   Planning, Statistiques, Membres BDE).
+
+   Ce ne sont pas des lettres HTML : chaque lettre de la police cursive
+   "Dancing Script" a ete convertie une bonne fois pour toutes en vrai
+   chemin SVG (un ou plusieurs traits par lettre selon la lettre, comme
+   un "s" ou un "b" qui ont plusieurs boucles). pathLength="1" (pose dans
+   le HTML) dit au navigateur de traiter chaque trait comme mesurant
+   "1 unite" quelle que soit sa vraie longueur, donc stroke-dasharray et
+   stroke-dashoffset peuvent juste aller de 1 a 0 sans calcul. Chaque
+   trait a son propre delai (--i, pose dans le HTML) : ils se dessinent
+   donc dans l'ordre d'ecriture, gauche a droite, lettre par lettre.
+   Chaque trait se remplit de noir EN MEME TEMPS qu'il se dessine (meme
+   delai --i pour les deux animations) : l'effet est celui d'un feutre qui
+   ecrit avec de l'encre pleine, pas d'un contour qui se remplit d'un coup
+   a la fin.
+
+   Note : ne marche que pour du texte fixe, connu a l'avance. Les titres
+   avec un nom d'etudiant/d'evenement ne peuvent pas avoir cet effet
+   (le texte change a chaque fois, on ne peut pas pre-calculer ses traits).
+   ========================================================== */
+
+.cursive-title-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.cursive-title-svg {
+    height: 84px;
+    width: auto;
+    overflow: visible;
+}
+
+.cursive-title-svg path {
+    fill: none;
+    stroke: #111111;
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: cursive-title-draw 0.35s ease-out forwards;
+    animation-delay: calc(var(--i) * 90ms);
+}
+
+/* Chemin de remplissage : UN SEUL par lettre, avec toutes ses sous-boucles
+   d'origine dans le meme <path> (garde le bon sens d'enroulement). Corrige
+   le bug ou les lettres a trou (e, a, o, S...) devenaient des blobs pleins
+   quand chaque sous-boucle etait remplie separement. Apparait juste apres
+   que la lettre ait fini de se dessiner (meme delai que son dernier trait). */
+.cursive-title-svg path.cursive-title-fill {
+    fill: #111111;
+    stroke: none;
+    opacity: 0;
+    animation: cursive-title-fill-fade 0.25s ease-out forwards;
+    animation-delay: calc(var(--fi) * 90ms + 120ms);
+}
+
+@keyframes cursive-title-draw {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes cursive-title-fill-fade {
+    to { opacity: 1; }
+}

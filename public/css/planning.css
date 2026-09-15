@@ -1,0 +1,274 @@
+/* ==========================================================
+   PAGE PLANNING (vue calendrier)
+   Style pour resources/views/planning/index.blade.php.
+   Toutes les couleurs viennent de la charte BDE.
+   ========================================================== */
+
+/* ----- En-tete : pastille "aujourd'hui" + titre + boutons de navigation ----- */
+
+.planning-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px;
+}
+
+.planning-header__left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Petite case qui affiche le mois + le jour du jour (pas du mois affiche : "aujourd'hui" reel) */
+.planning-today-chip {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 64px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.planning-today-chip__month {
+    width: 100%;
+    text-align: center;
+    padding: 3px 0;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #6b7280;
+}
+
+.planning-today-chip__day {
+    width: 100%;
+    text-align: center;
+    padding: 4px 0;
+    font-size: 18px;
+    font-weight: 700;
+    background: #fff;
+}
+
+@media (min-width: 768px) {
+    .planning-today-chip { display: flex; }
+}
+
+.planning-title h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    text-transform: capitalize;
+}
+
+.planning-title p {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.planning-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Groupe de 3 boutons colles (precedent / aujourd'hui / suivant), comme un segmented control */
+.planning-nav-group {
+    display: inline-flex;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    border: 1px solid #d1d5db;
+}
+
+.planning-nav-group a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    font-size: 0.875rem;
+    color: #374151;
+    background: #fff;
+    border-right: 1px solid #e5e7eb;
+    text-decoration: none;
+}
+
+.planning-nav-group a:last-child { border-right: none; }
+.planning-nav-group a:hover { background: #f9fafb; }
+
+.planning-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: #374151;
+    text-decoration: none;
+}
+
+.planning-btn-secondary:hover { background: #f9fafb; }
+
+.planning-btn-primary {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: linear-gradient(155deg, rgba(255, 138, 82, 0.4) 0%, rgba(247, 82, 28, 0.4) 45%, rgba(168, 51, 13, 0.5) 100%);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.5),
+        inset 0 -1px 4px rgba(0, 0, 0, 0.12),
+        0 6px 16px -8px rgba(168, 51, 13, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.planning-btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 50%);
+    pointer-events: none;
+}
+
+.planning-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.55),
+        inset 0 -1px 4px rgba(0, 0, 0, 0.12),
+        0 10px 20px -8px rgba(168, 51, 13, 0.6);
+}
+
+/* ----- Grille du calendrier ----- */
+
+/* Hauteur limitee pour que la page tienne a l'ecran sans scroll : seule la
+   grille defile (verticalement, pour les mois a 6 semaines), avec les noms
+   des jours colles en haut. */
+.planning-scroll {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 48vh;
+}
+
+.planning-weekdays {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(120px, 1fr));
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    color: #6b7280;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.planning-weekdays > div {
+    padding: 8px 0;
+    border-right: 1px solid #e5e7eb;
+}
+
+.planning-weekdays > div:last-child { border-right: none; }
+
+.planning-week {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(120px, 1fr));
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.planning-day {
+    position: relative;
+    min-height: 92px;
+    padding: 8px;
+    border-right: 1px solid #e5e7eb;
+}
+
+.planning-day:last-child { border-right: none; }
+
+.planning-day--hors-mois {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.planning-day__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    margin-left: auto;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.planning-day--hors-mois .planning-day__number {
+    color: #b0b0b8;
+}
+
+.planning-day--aujourdhui .planning-day__number {
+    background: var(--nav-orange, #F7521C);
+    color: #fff;
+    font-weight: 700;
+}
+
+.planning-day__events {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.planning-event-card {
+    display: block;
+    padding: 6px 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    text-decoration: none;
+    line-height: 1.2;
+}
+
+.planning-event-card:hover {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.planning-event-card__name {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #111827;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.planning-event-card__time {
+    display: block;
+    font-size: 0.7rem;
+    color: #6b7280;
+}
+
+.planning-day__more {
+    font-size: 0.7rem;
+    color: #6b7280;
+    padding-left: 2px;
+}

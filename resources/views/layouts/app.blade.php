@@ -17,13 +17,13 @@
         </script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100/40">
+        <div class="min-h-screen">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <header class="bg-white shadow mx-4 mt-4 rounded-2xl overflow-hidden">
+                    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>

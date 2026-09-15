@@ -43,31 +43,77 @@
     object-fit: contain;
 }
 
-/* Bouton "Menu" : devient "Fermer" quand le menu est ouvert (voir navigation.js) */
-.nav-toggle-btn {
+/* Bouton menu (barre du haut) + bouton fermer (dans le menu ouvert) :
+   MEME pastille "verre" degrade orange fonce pour les deux, icone seule
+   (pas de texte), qui respire doucement (halo) et se transforme en croix
+   a l'ouverture (voir navigation.js). */
+.nav-toggle-btn,
+.nav-overlay__close {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 18px;
-    border: none;
-    border-radius: 999px;
-    background: var(--nav-orange);
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    background: linear-gradient(155deg, rgba(255, 138, 82, 0.35) 0%, rgba(247, 82, 28, 0.35) 45%, rgba(168, 51, 13, 0.45) 100%);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.5),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.12),
+        0 8px 20px -8px rgba(168, 51, 13, 0.55);
     color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 20px;
+    line-height: 1;
     cursor: pointer;
-    transition: filter 0.2s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.nav-toggle-btn:hover { filter: brightness(1.08); }
+/* Reflet vitre : bande diagonale claire en haut du bouton, pour l'effet "verre" */
+.nav-toggle-btn::before,
+.nav-overlay__close::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 45%);
+    pointer-events: none;
+}
+
+.nav-toggle-btn:hover,
+.nav-overlay__close:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.55),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.12),
+        0 12px 24px -8px rgba(168, 51, 13, 0.65);
+}
+
+.nav-toggle-btn:active { transform: translateY(0) scale(0.96); }
+
+/* Halo derriere le bouton, qui pulse doucement en continu */
+.nav-toggle-btn__glow {
+    position: absolute;
+    inset: -7px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(247, 82, 28, 0.45) 0%, rgba(247, 82, 28, 0) 70%);
+    animation: nav-toggle-pulse 2.6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes nav-toggle-pulse {
+    0%, 100% { transform: scale(0.85); opacity: 0.55; }
+    50%      { transform: scale(1.2); opacity: 1; }
+}
 
 .nav-toggle-btn__icon {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
     position: relative;
+    width: 20px;
+    height: 14px;
 }
 
 .nav-toggle-btn__icon span {
@@ -75,19 +121,28 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: currentColor;
-    transition: transform 0.25s, opacity 0.25s;
+    border-radius: 2px;
+    background: #fff;
+    transition: transform 0.3s cubic-bezier(.5, -0.3, .5, 1.3), opacity 0.2s, width 0.3s;
 }
 
-.nav-toggle-btn__icon span:nth-child(1) { top: 3px; }
-.nav-toggle-btn__icon span:nth-child(2) { bottom: 3px; }
+.nav-toggle-btn__icon span:nth-child(1) { top: 0; }
+.nav-toggle-btn__icon span:nth-child(2) { top: 6px; width: 65%; }
+.nav-toggle-btn__icon span:nth-child(3) { top: 12px; }
 
-/* Quand le menu est ouvert, les 2 barres forment une croix */
+/* Quand le menu est ouvert, les barres forment une croix */
 .nav-overlay.is-open ~ .site-header .nav-toggle-btn__icon span:nth-child(1) {
-    transform: translateY(4px) rotate(45deg);
+    top: 6px;
+    transform: rotate(45deg);
 }
 .nav-overlay.is-open ~ .site-header .nav-toggle-btn__icon span:nth-child(2) {
-    transform: translateY(-4px) rotate(-45deg);
+    opacity: 0;
+    transform: translateX(-8px);
+}
+.nav-overlay.is-open ~ .site-header .nav-toggle-btn__icon span:nth-child(3) {
+    top: 6px;
+    width: 100%;
+    transform: rotate(-45deg);
 }
 
 /* ----- Menu plein ecran ----- */
@@ -122,18 +177,53 @@
     pointer-events: none;
 }
 
+/* Halo blanc qui derive doucement en fond (derriere les liens), pour donner
+   un peu de vie au degrade sans etre distrayant. */
+.nav-overlay__halo {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+    filter: blur(10px);
+    pointer-events: none;
+    animation: nav-halo-drift 16s ease-in-out infinite alternate;
+}
+
+@keyframes nav-halo-drift {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(90px, 70px) scale(1.2); }
+    100% { transform: translate(-50px, 110px) scale(0.9); }
+}
+
+/* Logo BDE en filigrane a droite du menu, pour equilibrer l'espace vide
+   face a la colonne de liens (a gauche). */
+.nav-overlay__logo {
+    position: absolute;
+    top: 96px;
+    right: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 14px 22px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.nav-overlay__logo img {
+    height: 110px;
+    width: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 900px) {
+    .nav-overlay__logo { display: none; }
+}
+
 .nav-overlay__close {
     position: absolute;
     top: 24px;
     right: 24px;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: #fff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 18px;
-    cursor: pointer;
+    z-index: 1;
 }
 
 .nav-overlay__links {
@@ -195,7 +285,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    max-width: 720px;
+    width: 100%;
 }
 
 .nav-overlay__user {

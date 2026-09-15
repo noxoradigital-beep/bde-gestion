@@ -1,53 +1,121 @@
 <x-app-layout>
+    <link rel="stylesheet" href="{{ asset('css/cursive-title.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/planning.css') }}">
+
     <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Planning</h2>
-            <div class="flex gap-2">
-                <a href="{{ route('evenements.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50">Voir en liste</a>
-                <a href="{{ route('evenements.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700">Créer un événement</a>
-            </div>
+        <div class="cursive-title-wrap">
+            <svg class="cursive-title-svg" viewBox="0 -750 3314 850" aria-label="Planning">
+    <g transform="scale(1,-1)">
+                    <g transform="translate(0,0)"> {{-- P --}}
+                        <path class="cursive-title-fill" style="--fi:1" d="M117 -87Q87 -87 60.5 -71.0Q34 -55 34 -30Q34 -17 38.5 -2.0Q43 13 47 26Q78 121 105.0 203.5Q132 286 159.5 362.5Q187 439 217.5 516.0Q248 593 286 677Q248 669 221.0 656.5Q194 644 177.0 634.5Q160 625 152 625Q147 625 137.5 632.0Q128 639 121.0 648.0Q114 657 114 664Q142 676 179.5 689.0Q217 702 261.0 711.0Q305 720 349 720Q396 720 445.0 707.5Q494 695 535.5 670.5Q577 646 602.5 609.5Q628 573 628 524Q628 471 604.0 433.0Q580 395 540.5 369.0Q501 343 455.0 327.0Q409 311 363.5 303.0Q318 295 282.0 292.0Q246 289 228 289H222Q194 190 167.0 91.5Q140 -7 117 -87ZM231 320Q287 324 343.0 339.0Q399 354 444.5 380.5Q490 407 517.5 447.0Q545 487 545 540Q545 590 518.5 621.0Q492 652 450.5 668.0Q409 684 363 685Q327 615 294.0 519.5Q261 424 231 320Z" />
+                        <path pathLength="1" style="--i:0" d="M117 -87Q87 -87 60.5 -71.0Q34 -55 34 -30Q34 -17 38.5 -2.0Q43 13 47 26Q78 121 105.0 203.5Q132 286 159.5 362.5Q187 439 217.5 516.0Q248 593 286 677Q248 669 221.0 656.5Q194 644 177.0 634.5Q160 625 152 625Q147 625 137.5 632.0Q128 639 121.0 648.0Q114 657 114 664Q142 676 179.5 689.0Q217 702 261.0 711.0Q305 720 349 720Q396 720 445.0 707.5Q494 695 535.5 670.5Q577 646 602.5 609.5Q628 573 628 524Q628 471 604.0 433.0Q580 395 540.5 369.0Q501 343 455.0 327.0Q409 311 363.5 303.0Q318 295 282.0 292.0Q246 289 228 289H222Q194 190 167.0 91.5Q140 -7 117 -87Z" />
+                        <path pathLength="1" style="--i:1" d="M231 320Q287 324 343.0 339.0Q399 354 444.5 380.5Q490 407 517.5 447.0Q545 487 545 540Q545 590 518.5 621.0Q492 652 450.5 668.0Q409 684 363 685Q327 615 294.0 519.5Q261 424 231 320Z" />
+                    </g>
+                    <g transform="translate(559,0)"> {{-- l --}}
+                        <path class="cursive-title-fill" style="--fi:3" d="M86 -30Q39 -30 20.5 1.5Q2 33 2 76Q2 125 20.0 191.0Q38 257 67.5 329.5Q97 402 132.5 471.5Q168 541 204.0 597.0Q240 653 270.5 686.5Q301 720 320 720Q333 720 342.0 706.5Q351 693 356.5 674.5Q362 656 362 640Q362 613 348.5 569.5Q335 526 310.5 474.0Q286 422 252.5 367.5Q219 313 178.5 264.0Q138 215 92 179Q88 154 84.5 129.5Q81 105 81 85Q81 49 93.0 32.5Q105 16 124 16Q149 16 175.5 39.5Q202 63 226.5 99.5Q251 136 269 175L293 162Q250 73 197.0 21.5Q144 -30 86 -30ZM110 241Q144 278 174.5 321.5Q205 365 230.5 410.0Q256 455 275.0 497.0Q294 539 304.5 572.5Q315 606 316 626Q316 627 316.0 627.5Q316 628 316 629Q308 629 290.5 606.5Q273 584 249.0 545.0Q225 506 199.5 456.0Q174 406 150.5 350.5Q127 295 110 241Z" />
+                        <path pathLength="1" style="--i:2" d="M86 -30Q39 -30 20.5 1.5Q2 33 2 76Q2 125 20.0 191.0Q38 257 67.5 329.5Q97 402 132.5 471.5Q168 541 204.0 597.0Q240 653 270.5 686.5Q301 720 320 720Q333 720 342.0 706.5Q351 693 356.5 674.5Q362 656 362 640Q362 613 348.5 569.5Q335 526 310.5 474.0Q286 422 252.5 367.5Q219 313 178.5 264.0Q138 215 92 179Q88 154 84.5 129.5Q81 105 81 85Q81 49 93.0 32.5Q105 16 124 16Q149 16 175.5 39.5Q202 63 226.5 99.5Q251 136 269 175L293 162Q250 73 197.0 21.5Q144 -30 86 -30Z" />
+                        <path pathLength="1" style="--i:3" d="M110 241Q144 278 174.5 321.5Q205 365 230.5 410.0Q256 455 275.0 497.0Q294 539 304.5 572.5Q315 606 316 626Q316 627 316.0 627.5Q316 628 316 629Q308 629 290.5 606.5Q273 584 249.0 545.0Q225 506 199.5 456.0Q174 406 150.5 350.5Q127 295 110 241Z" />
+                    </g>
+                    <g transform="translate(804,0)"> {{-- a --}}
+                        <path class="cursive-title-fill" style="--fi:4" d="M56 -47Q23 -47 -1.5 -25.0Q-26 -3 -26 41Q-26 76 -10.0 117.0Q6 158 34.0 198.0Q62 238 98.0 270.5Q134 303 175.0 323.0Q216 343 257 343Q300 343 330.0 321.0Q360 299 360 263Q360 236 341.0 224.0Q322 212 296 217Q298 226 299.5 235.0Q301 244 301 254Q301 274 293.0 290.0Q285 306 259 306Q231 306 202.0 287.0Q173 268 146.5 237.5Q120 207 99.0 170.5Q78 134 66.0 99.0Q54 64 54 36Q54 4 77 4Q100 4 128.0 26.5Q156 49 184.5 83.0Q213 117 239.0 152.5Q265 188 284 213Q287 218 292 218Q296 217 307.5 213.5Q319 210 329.0 203.0Q339 196 339 185Q339 175 330.5 159.5Q322 144 310.5 125.5Q299 107 290.5 88.5Q282 70 282 53Q282 40 289.0 28.5Q296 17 312 17Q336 17 379.5 52.5Q423 88 468 173L487 154Q463 100 429.5 58.5Q396 17 359.0 -6.5Q322 -30 284 -30Q243 -30 223.0 -4.0Q203 22 201 52Q201 54 201.0 55.0Q201 56 201 57Q161 9 127.5 -19.0Q94 -47 56 -47Z" />
+                        <path pathLength="1" style="--i:4" d="M56 -47Q23 -47 -1.5 -25.0Q-26 -3 -26 41Q-26 76 -10.0 117.0Q6 158 34.0 198.0Q62 238 98.0 270.5Q134 303 175.0 323.0Q216 343 257 343Q300 343 330.0 321.0Q360 299 360 263Q360 236 341.0 224.0Q322 212 296 217Q298 226 299.5 235.0Q301 244 301 254Q301 274 293.0 290.0Q285 306 259 306Q231 306 202.0 287.0Q173 268 146.5 237.5Q120 207 99.0 170.5Q78 134 66.0 99.0Q54 64 54 36Q54 4 77 4Q100 4 128.0 26.5Q156 49 184.5 83.0Q213 117 239.0 152.5Q265 188 284 213Q287 218 292 218Q296 217 307.5 213.5Q319 210 329.0 203.0Q339 196 339 185Q339 175 330.5 159.5Q322 144 310.5 125.5Q299 107 290.5 88.5Q282 70 282 53Q282 40 289.0 28.5Q296 17 312 17Q336 17 379.5 52.5Q423 88 468 173L487 154Q463 100 429.5 58.5Q396 17 359.0 -6.5Q322 -30 284 -30Q243 -30 223.0 -4.0Q203 22 201 52Q201 54 201.0 55.0Q201 56 201 57Q161 9 127.5 -19.0Q94 -47 56 -47Z" />
+                    </g>
+                    <g transform="translate(1248,0)"> {{-- n --}}
+                        <path class="cursive-title-fill" style="--fi:5" d="M337 -20Q298 -20 277.5 -0.5Q257 19 257 49Q257 69 264.0 91.5Q271 114 278.0 137.0Q285 160 285 181Q285 203 274.5 211.5Q264 220 250 220Q220 220 188.5 195.5Q157 171 127.5 134.0Q98 97 72.0 57.0Q46 17 27 -15Q8 -15 -9.0 -8.5Q-26 -2 -38 14Q-37 19 -26.5 44.5Q-16 70 -3.0 105.5Q10 141 20.0 180.0Q30 219 30 251Q37 259 51.5 267.0Q66 275 82 275Q117 275 117 245Q117 233 112.5 209.5Q108 186 100 156Q126 191 157.0 222.0Q188 253 221.5 272.5Q255 292 289 292Q332 292 352.5 263.0Q373 234 373 199Q373 169 363.0 143.0Q353 117 343.5 94.0Q334 71 334 49Q334 33 341.5 26.5Q349 20 358 20Q382 20 408.0 43.0Q434 66 457.5 101.5Q481 137 499 173L516 159Q495 110 468.5 69.5Q442 29 409.5 4.5Q377 -20 337 -20Z" />
+                        <path pathLength="1" style="--i:5" d="M337 -20Q298 -20 277.5 -0.5Q257 19 257 49Q257 69 264.0 91.5Q271 114 278.0 137.0Q285 160 285 181Q285 203 274.5 211.5Q264 220 250 220Q220 220 188.5 195.5Q157 171 127.5 134.0Q98 97 72.0 57.0Q46 17 27 -15Q8 -15 -9.0 -8.5Q-26 -2 -38 14Q-37 19 -26.5 44.5Q-16 70 -3.0 105.5Q10 141 20.0 180.0Q30 219 30 251Q37 259 51.5 267.0Q66 275 82 275Q117 275 117 245Q117 233 112.5 209.5Q108 186 100 156Q126 191 157.0 222.0Q188 253 221.5 272.5Q255 292 289 292Q332 292 352.5 263.0Q373 234 373 199Q373 169 363.0 143.0Q353 117 343.5 94.0Q334 71 334 49Q334 33 341.5 26.5Q349 20 358 20Q382 20 408.0 43.0Q434 66 457.5 101.5Q481 137 499 173L516 159Q495 110 468.5 69.5Q442 29 409.5 4.5Q377 -20 337 -20Z" />
+                    </g>
+                    <g transform="translate(1721,0)"> {{-- n --}}
+                        <path class="cursive-title-fill" style="--fi:6" d="M337 -20Q298 -20 277.5 -0.5Q257 19 257 49Q257 69 264.0 91.5Q271 114 278.0 137.0Q285 160 285 181Q285 203 274.5 211.5Q264 220 250 220Q220 220 188.5 195.5Q157 171 127.5 134.0Q98 97 72.0 57.0Q46 17 27 -15Q8 -15 -9.0 -8.5Q-26 -2 -38 14Q-37 19 -26.5 44.5Q-16 70 -3.0 105.5Q10 141 20.0 180.0Q30 219 30 251Q37 259 51.5 267.0Q66 275 82 275Q117 275 117 245Q117 233 112.5 209.5Q108 186 100 156Q126 191 157.0 222.0Q188 253 221.5 272.5Q255 292 289 292Q332 292 352.5 263.0Q373 234 373 199Q373 169 363.0 143.0Q353 117 343.5 94.0Q334 71 334 49Q334 33 341.5 26.5Q349 20 358 20Q382 20 408.0 43.0Q434 66 457.5 101.5Q481 137 499 173L516 159Q495 110 468.5 69.5Q442 29 409.5 4.5Q377 -20 337 -20Z" />
+                        <path pathLength="1" style="--i:6" d="M337 -20Q298 -20 277.5 -0.5Q257 19 257 49Q257 69 264.0 91.5Q271 114 278.0 137.0Q285 160 285 181Q285 203 274.5 211.5Q264 220 250 220Q220 220 188.5 195.5Q157 171 127.5 134.0Q98 97 72.0 57.0Q46 17 27 -15Q8 -15 -9.0 -8.5Q-26 -2 -38 14Q-37 19 -26.5 44.5Q-16 70 -3.0 105.5Q10 141 20.0 180.0Q30 219 30 251Q37 259 51.5 267.0Q66 275 82 275Q117 275 117 245Q117 233 112.5 209.5Q108 186 100 156Q126 191 157.0 222.0Q188 253 221.5 272.5Q255 292 289 292Q332 292 352.5 263.0Q373 234 373 199Q373 169 363.0 143.0Q353 117 343.5 94.0Q334 71 334 49Q334 33 341.5 26.5Q349 20 358 20Q382 20 408.0 43.0Q434 66 457.5 101.5Q481 137 499 173L516 159Q495 110 468.5 69.5Q442 29 409.5 4.5Q377 -20 337 -20Z" />
+                    </g>
+                    <g transform="translate(2194,0)"> {{-- i --}}
+                        <path class="cursive-title-fill" style="--fi:8" d="M80 -30Q36 -30 14.0 -4.0Q-8 22 -8 59Q-8 82 0.0 117.0Q8 152 22.5 190.5Q37 229 56.0 263.0Q75 297 97.0 318.5Q119 340 141 340Q153 340 162.0 333.0Q171 326 171 311Q171 298 155.5 272.0Q140 246 119.5 212.0Q99 178 83.5 141.5Q68 105 68 72Q68 40 79.5 29.5Q91 19 113 19Q147 19 187.0 53.0Q227 87 270 172L285 156Q250 68 196.0 19.0Q142 -30 80 -30ZM198 421Q179 421 163.5 430.5Q148 440 148 460Q148 484 174.0 501.0Q200 518 228 518Q246 518 258.5 510.0Q271 502 271 481Q271 460 248.0 440.5Q225 421 198 421Z" />
+                        <path pathLength="1" style="--i:7" d="M80 -30Q36 -30 14.0 -4.0Q-8 22 -8 59Q-8 82 0.0 117.0Q8 152 22.5 190.5Q37 229 56.0 263.0Q75 297 97.0 318.5Q119 340 141 340Q153 340 162.0 333.0Q171 326 171 311Q171 298 155.5 272.0Q140 246 119.5 212.0Q99 178 83.5 141.5Q68 105 68 72Q68 40 79.5 29.5Q91 19 113 19Q147 19 187.0 53.0Q227 87 270 172L285 156Q250 68 196.0 19.0Q142 -30 80 -30Z" />
+                        <path pathLength="1" style="--i:8" d="M198 421Q179 421 163.5 430.5Q148 440 148 460Q148 484 174.0 501.0Q200 518 228 518Q246 518 258.5 510.0Q271 502 271 481Q271 460 248.0 440.5Q225 421 198 421Z" />
+                    </g>
+                    <g transform="translate(2438,0)"> {{-- n --}}
+                        <path class="cursive-title-fill" style="--fi:9" d="M337 -20Q298 -20 277.5 -0.5Q257 19 257 49Q257 69 264.0 91.5Q271 114 278.0 137.0Q285 160 285 181Q285 203 274.5 211.5Q264 220 250 220Q220 220 188.5 195.5Q157 171 127.5 134.0Q98 97 72.0 57.0Q46 17 27 -15Q8 -15 -9.0 -8.5Q-26 -2 -38 14Q-37 19 -26.5 44.5Q-16 70 -3.0 105.5Q10 141 20.0 180.0Q30 219 30 251Q37 259 51.5 267.0Q66 275 82 275Q117 275 117 245Q117 233 112.5 209.5Q108 186 100 156Q126 191 157.0 222.0Q188 253 221.5 272.5Q255 292 289 292Q332 292 352.5 263.0Q373 234 373 199Q373 169 363.0 143.0Q353 117 343.5 94.0Q334 71 334 49Q334 33 341.5 26.5Q349 20 358 20Q382 20 408.0 43.0Q434 66 457.5 101.5Q481 137 499 173L516 159Q495 110 468.5 69.5Q442 29 409.5 4.5Q377 -20 337 -20Z" />
+                        <path pathLength="1" style="--i:9" d="M337 -20Q298 -20 277.5 -0.5Q257 19 257 49Q257 69 264.0 91.5Q271 114 278.0 137.0Q285 160 285 181Q285 203 274.5 211.5Q264 220 250 220Q220 220 188.5 195.5Q157 171 127.5 134.0Q98 97 72.0 57.0Q46 17 27 -15Q8 -15 -9.0 -8.5Q-26 -2 -38 14Q-37 19 -26.5 44.5Q-16 70 -3.0 105.5Q10 141 20.0 180.0Q30 219 30 251Q37 259 51.5 267.0Q66 275 82 275Q117 275 117 245Q117 233 112.5 209.5Q108 186 100 156Q126 191 157.0 222.0Q188 253 221.5 272.5Q255 292 289 292Q332 292 352.5 263.0Q373 234 373 199Q373 169 363.0 143.0Q353 117 343.5 94.0Q334 71 334 49Q334 33 341.5 26.5Q349 20 358 20Q382 20 408.0 43.0Q434 66 457.5 101.5Q481 137 499 173L516 159Q495 110 468.5 69.5Q442 29 409.5 4.5Q377 -20 337 -20Z" />
+                    </g>
+                    <g transform="translate(2911,0)"> {{-- g --}}
+                        <path class="cursive-title-fill" style="--fi:11" d="M50 -280Q25 -280 3.5 -265.0Q-18 -250 -18 -216Q-18 -184 0.5 -158.5Q19 -133 49.5 -111.5Q80 -90 115.0 -72.0Q150 -54 183 -38Q194 -11 204.0 20.0Q214 51 223 87Q188 43 149.5 14.0Q111 -15 71 -15Q31 -15 7.5 13.0Q-16 41 -16 87Q-16 140 10.5 186.5Q37 233 79.0 269.5Q121 306 169.0 326.5Q217 347 261 347Q293 347 309.0 335.5Q325 324 325 309Q325 297 318.0 290.0Q311 283 309 282Q299 293 288.5 296.5Q278 300 264 300Q225 300 189.0 278.0Q153 256 125.5 221.5Q98 187 82.0 150.0Q66 113 66 83Q66 63 75.0 52.5Q84 42 97 42Q125 42 165.0 78.5Q205 115 242 167Q244 175 245.5 181.5Q247 188 248 194Q258 234 272.0 253.0Q286 272 311 272Q316 272 323.5 271.0Q331 270 340 268Q340 250 330.0 209.0Q320 168 303.0 113.5Q286 59 265 2Q296 15 328.0 38.5Q360 62 387.0 95.5Q414 129 428 170L446 152Q430 106 396.5 68.0Q363 30 324.0 2.5Q285 -25 252 -40Q225 -106 193.5 -160.5Q162 -215 126.5 -247.5Q91 -280 50 -280ZM46 -234Q64 -234 95.5 -200.0Q127 -166 164 -85Q127 -103 96.0 -122.0Q65 -141 46.0 -162.0Q27 -183 27 -206Q27 -219 32.5 -226.5Q38 -234 46 -234Z" />
+                        <path pathLength="1" style="--i:10" d="M50 -280Q25 -280 3.5 -265.0Q-18 -250 -18 -216Q-18 -184 0.5 -158.5Q19 -133 49.5 -111.5Q80 -90 115.0 -72.0Q150 -54 183 -38Q194 -11 204.0 20.0Q214 51 223 87Q188 43 149.5 14.0Q111 -15 71 -15Q31 -15 7.5 13.0Q-16 41 -16 87Q-16 140 10.5 186.5Q37 233 79.0 269.5Q121 306 169.0 326.5Q217 347 261 347Q293 347 309.0 335.5Q325 324 325 309Q325 297 318.0 290.0Q311 283 309 282Q299 293 288.5 296.5Q278 300 264 300Q225 300 189.0 278.0Q153 256 125.5 221.5Q98 187 82.0 150.0Q66 113 66 83Q66 63 75.0 52.5Q84 42 97 42Q125 42 165.0 78.5Q205 115 242 167Q244 175 245.5 181.5Q247 188 248 194Q258 234 272.0 253.0Q286 272 311 272Q316 272 323.5 271.0Q331 270 340 268Q340 250 330.0 209.0Q320 168 303.0 113.5Q286 59 265 2Q296 15 328.0 38.5Q360 62 387.0 95.5Q414 129 428 170L446 152Q430 106 396.5 68.0Q363 30 324.0 2.5Q285 -25 252 -40Q225 -106 193.5 -160.5Q162 -215 126.5 -247.5Q91 -280 50 -280Z" />
+                        <path pathLength="1" style="--i:11" d="M46 -234Q64 -234 95.5 -200.0Q127 -166 164 -85Q127 -103 96.0 -122.0Q65 -141 46.0 -162.0Q27 -183 27 -206Q27 -219 32.5 -226.5Q38 -234 46 -234Z" />
+                    </g>
+    </g>
+</svg>
         </div>
     </x-slot>
 
-    <div class="py-8">
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-4">
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 space-y-4">
             @if (session('status'))
-                <div class="bg-green-50 text-green-800 text-sm rounded-md p-3 mb-4">{{ session('status') }}</div>
+                <div class="bg-green-50 text-green-800 text-sm rounded-md p-3">{{ session('status') }}</div>
             @endif
 
-            <div class="bg-white shadow-sm sm:rounded-lg overflow-hidden">
-                <div class="flex justify-between items-center px-4 py-3 border-b border-gray-100">
-                    <a href="{{ route('planning.index', ['mois' => $moisPrecedent]) }}" class="px-3 py-1 rounded-md text-sm text-gray-600 hover:bg-gray-100">&larr; Précédent</a>
-                    <h3 class="font-semibold text-gray-800 capitalize">{{ $mois->translatedFormat('F Y') }}</h3>
-                    <a href="{{ route('planning.index', ['mois' => $moisSuivant]) }}" class="px-3 py-1 rounded-md text-sm text-gray-600 hover:bg-gray-100">Suivant &rarr;</a>
+            <div class="page-fade-in bg-white shadow-sm sm:rounded-lg overflow-hidden" style="animation-delay: 1.4s">
+
+                {{-- En-tete : pastille du jour, titre du mois, navigation, actions --}}
+                <div class="planning-header">
+                    <div class="planning-header__left">
+                        <div class="planning-today-chip">
+                            <div class="planning-today-chip__month">{{ now()->translatedFormat('M') }}</div>
+                            <div class="planning-today-chip__day">{{ now()->day }}</div>
+                        </div>
+                        <div class="planning-title">
+                            <h2>{{ $mois->translatedFormat('F Y') }}</h2>
+                            <p>{{ $mois->translatedFormat('d M Y') }} - {{ $mois->copy()->endOfMonth()->translatedFormat('d M Y') }}</p>
+                        </div>
+                    </div>
+
+                    <div class="planning-actions">
+                        <a href="{{ route('evenements.index') }}" class="planning-btn-secondary">Voir en liste</a>
+
+                        <div class="planning-nav-group">
+                            <a href="{{ route('planning.index', ['mois' => $moisPrecedent]) }}" aria-label="Mois précédent">&larr;</a>
+                            <a href="{{ route('planning.index') }}">Aujourd'hui</a>
+                            <a href="{{ route('planning.index', ['mois' => $moisSuivant]) }}" aria-label="Mois suivant">&rarr;</a>
+                        </div>
+
+                        <a href="{{ route('evenements.create') }}" class="planning-btn-primary">+ Nouvel événement</a>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-7 text-xs font-medium text-gray-500 border-b border-gray-100">
-                    @foreach (['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] as $jour)
-                        <div class="px-2 py-2 text-center">{{ $jour }}</div>
-                    @endforeach
-                </div>
-
-                @foreach ($semaines as $semaine)
-                    <div class="grid grid-cols-7 border-b border-gray-100 last:border-b-0">
-                        @foreach ($semaine as $jour)
-                            <div class="min-h-[110px] border-r border-gray-100 last:border-r-0 p-1.5 align-top {{ $jour['horsMois'] ? 'bg-gray-50' : '' }}">
-                                <div class="text-xs {{ $jour['horsMois'] ? 'text-gray-300' : 'text-gray-500' }} {{ $jour['aujourdhui'] ? 'inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-800 text-white' : '' }}">
-                                    {{ $jour['date']->day }}
-                                </div>
-                                <div class="mt-1 space-y-1">
-                                    @foreach ($jour['evenements'] as $evenement)
-                                        <a href="{{ route('evenements.show', $evenement) }}"
-                                            class="block truncate text-xs px-1.5 py-0.5 rounded bg-gray-800 text-white hover:bg-gray-700"
-                                            title="{{ $evenement->nom }} ({{ $evenement->etudiants_count }} participant(s))">
-                                            {{ $evenement->date->format('H:i') }} {{ $evenement->nom }}
-                                        </a>
-                                    @endforeach
-                                </div>
-                            </div>
+                {{-- Grille du mois --}}
+                <div class="planning-scroll">
+                    <div class="planning-weekdays">
+                        @foreach (['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'] as $jour)
+                            <div>{{ $jour }}</div>
                         @endforeach
                     </div>
-                @endforeach
+
+                    @foreach ($semaines as $semaine)
+                        <div class="planning-week">
+                            @foreach ($semaine as $jour)
+                                <div class="planning-day {{ $jour['horsMois'] ? 'planning-day--hors-mois' : '' }} {{ $jour['aujourdhui'] ? 'planning-day--aujourdhui' : '' }}">
+                                    <div class="planning-day__number">{{ $jour['date']->day }}</div>
+
+                                    @if ($jour['evenements']->isNotEmpty())
+                                        <div class="planning-day__events">
+                                            @foreach ($jour['evenements']->take(1) as $evenement)
+                                                <a href="{{ route('evenements.show', $evenement) }}" class="planning-event-card"
+                                                    title="{{ $evenement->nom }} ({{ $evenement->etudiants_count }} participant(s))">
+                                                    <span class="planning-event-card__name">{{ $evenement->nom }}</span>
+                                                    <span class="planning-event-card__time">{{ $evenement->date->format('H:i') }}</span>
+                                                </a>
+                                            @endforeach
+
+                                            @if ($jour['evenements']->count() > 1)
+                                                <span class="planning-day__more">+ {{ $jour['evenements']->count() - 1 }} de plus</span>
+                                            @endif
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

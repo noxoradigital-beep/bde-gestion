@@ -23,17 +23,22 @@
         <img src="{{ asset('images/logo.png') }}" alt="Logo BDE">
     </a>
 
-    <button type="button" id="nav-toggle-btn" class="nav-toggle-btn" aria-expanded="false" aria-controls="nav-overlay">
-        <span class="nav-toggle-btn__icon"><span></span><span></span></span>
-        Menu
+    <button type="button" id="nav-toggle-btn" class="nav-toggle-btn" aria-expanded="false" aria-controls="nav-overlay" aria-label="Ouvrir le menu">
+        <span class="nav-toggle-btn__glow"></span>
+        <span class="nav-toggle-btn__icon"><span></span><span></span><span></span></span>
     </button>
 </header>
 
 <div id="nav-overlay" class="nav-overlay">
     <div class="nav-overlay__blob" style="width:380px;height:380px;left:-80px;top:-80px;background:var(--nav-creme);"></div>
     <div class="nav-overlay__blob" style="width:300px;height:300px;right:-60px;bottom:10%;background:var(--nav-corail);"></div>
+    <div class="nav-overlay__halo" style="width:460px;height:460px;left:35%;top:-120px;"></div>
 
     <button type="button" id="nav-overlay-close" class="nav-overlay__close" aria-label="Fermer le menu">&times;</button>
+
+    <a href="{{ route('dashboard') }}" class="nav-overlay__logo">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo BDE">
+    </a>
 
     <ul class="nav-overlay__links">
         @foreach ($navLinks as $link)
