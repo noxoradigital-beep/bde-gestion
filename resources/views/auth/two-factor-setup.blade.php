@@ -5,7 +5,7 @@
 
     <div class="py-8">
         <div class="max-w-md mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm sm:rounded-lg p-6 space-y-4">
+            <div class="bg-white shadow-sm rounded-lg p-6 space-y-4">
                 <p class="text-sm text-gray-600">
                     Scanne ce QR code avec une application d'authentification (Google Authenticator, Authy...),
                     puis saisis le code à 6 chiffres généré pour confirmer.

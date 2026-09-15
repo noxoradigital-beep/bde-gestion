@@ -1,56 +1,162 @@
 <x-app-layout>
+    <link rel="stylesheet" href="{{ asset('css/cursive-title.css') }}">
+
     <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Événements</h2>
-            <div class="flex gap-2">
-                <a href="{{ route('planning.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50">Voir en calendrier</a>
-                <a href="{{ route('evenements.export') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50">Exporter (CSV)</a>
-                <a href="{{ route('evenements.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700">Créer un événement</a>
-            </div>
+        <div class="cursive-title-wrap">
+        <svg class="cursive-title-svg" viewBox="0 -750 4211 850" aria-label="Événements">
+            <g transform="scale(1,-1)">
+                            <g transform="translate(0,0)"> {{-- É --}}
+                                <path class="cursive-title-fill" style="--fi:1" d="M209 -87Q145 -87 97.0 -61.5Q49 -36 22.5 6.5Q-4 49 -4 101Q-4 145 15.0 188.0Q34 231 68.5 266.5Q103 302 149.5 326.5Q196 351 251 359Q215 391 197.0 430.0Q179 469 179 510Q179 563 206.0 611.0Q233 659 282.0 689.0Q331 719 396 719Q457 719 490.0 689.5Q523 660 523 604Q523 565 509.0 529.5Q495 494 475.5 472.0Q456 450 437 450Q423 450 410.5 462.5Q398 475 389 491Q426 521 451.5 555.0Q477 589 477 625Q477 655 457.0 670.5Q437 686 405 686Q360 686 329.5 658.5Q299 631 283.5 588.5Q268 546 268 501Q268 458 284.0 414.5Q300 371 342 339Q270 328 217.0 289.5Q164 251 135.0 200.0Q106 149 106 99Q106 69 118.5 36.0Q131 3 159.5 -19.5Q188 -42 236 -42Q291 -42 344.0 -11.5Q397 19 441.5 69.0Q486 119 513 175L540 158Q503 89 453.0 33.5Q403 -22 342.0 -54.5Q281 -87 209 -87ZM458 748Q445 753 439.5 764.5Q434 776 434 781Q434 789 444.0 807.5Q454 826 470.0 846.5Q486 867 503.5 881.5Q521 896 537 896Q548 896 556.5 888.5Q565 881 567 861Q532 827 505.5 801.5Q479 776 458 748Z" />
+                                <path pathLength="1" style="--i:0" d="M209 -87Q145 -87 97.0 -61.5Q49 -36 22.5 6.5Q-4 49 -4 101Q-4 145 15.0 188.0Q34 231 68.5 266.5Q103 302 149.5 326.5Q196 351 251 359Q215 391 197.0 430.0Q179 469 179 510Q179 563 206.0 611.0Q233 659 282.0 689.0Q331 719 396 719Q457 719 490.0 689.5Q523 660 523 604Q523 565 509.0 529.5Q495 494 475.5 472.0Q456 450 437 450Q423 450 410.5 462.5Q398 475 389 491Q426 521 451.5 555.0Q477 589 477 625Q477 655 457.0 670.5Q437 686 405 686Q360 686 329.5 658.5Q299 631 283.5 588.5Q268 546 268 501Q268 458 284.0 414.5Q300 371 342 339Q270 328 217.0 289.5Q164 251 135.0 200.0Q106 149 106 99Q106 69 118.5 36.0Q131 3 159.5 -19.5Q188 -42 236 -42Q291 -42 344.0 -11.5Q397 19 441.5 69.0Q486 119 513 175L540 158Q503 89 453.0 33.5Q403 -22 342.0 -54.5Q281 -87 209 -87Z" />
+                                <path pathLength="1" style="--i:1" d="M458 748Q445 753 439.5 764.5Q434 776 434 781Q434 789 444.0 807.5Q454 826 470.0 846.5Q486 867 503.5 881.5Q521 896 537 896Q548 896 556.5 888.5Q565 881 567 861Q532 827 505.5 801.5Q479 776 458 748Z" />
+                            </g>
+                            <g transform="translate(533,0)"> {{-- v --}}
+                                <path class="cursive-title-fill" style="--fi:2" d="M74 -39Q37 -39 22.5 -5.5Q8 28 8 81Q8 92 9 120.5Q10 149 12 200Q13 230 18.5 241Q24 252 50 252Q74 252 78.5 242.5Q83 233 83 204Q83 174 80.5 140Q78 106 78 74Q78 43 81 28.5Q84 14 96 14Q114 14 135 33.5Q156 53 177.5 83.5Q199 114 218.5 149.5Q238 185 253 218Q255 286 269 309Q283 332 305 332Q330 332 339 316Q348 300 348 288Q348 273 340 261Q332 249 324 228Q316 207 316 164Q316 150 318.5 133.5Q321 117 330.5 105.5Q340 94 359 94Q379 94 397.5 110.5Q416 127 437 168Q442.5 163.5 448 159Q425 104 396.5 82Q368 60 342 60Q309 60 288.5 86.5Q268 113 257 153Q233 108 202.5 64Q172 20 139 -9.5Q106 -39 74 -39Z" />
+                                <path pathLength="1" style="--i:2" d="M74 -39Q37 -39 22.5 -5.5Q8 28 8 81Q8 92 9 120.5Q10 149 12 200Q13 230 18.5 241Q24 252 50 252Q74 252 78.5 242.5Q83 233 83 204Q83 174 80.5 140Q78 106 78 74Q78 43 81 28.5Q84 14 96 14Q114 14 135 33.5Q156 53 177.5 83.5Q199 114 218.5 149.5Q238 185 253 218Q255 286 269 309Q283 332 305 332Q330 332 339 316Q348 300 348 288Q348 273 340 261Q332 249 324 228Q316 207 316 164Q316 150 318.5 133.5Q321 117 330.5 105.5Q340 94 359 94Q379 94 397.5 110.5Q416 127 437 168Q442.5 163.5 448 159Q425 104 396.5 82Q368 60 342 60Q309 60 288.5 86.5Q268 113 257 153Q233 108 202.5 64Q172 20 139 -9.5Q106 -39 74 -39Z" />
+                            </g>
+                            <g transform="translate(943,0)"> {{-- é --}}
+                                <path class="cursive-title-fill" style="--fi:5" d="M116 -44Q52 -44 17.5 -9.5Q-17 25 -17 77Q-17 121 5.5 170.5Q28 220 66 263.5Q104 307 150 334Q196 361 242 361Q268 361 291.5 347.5Q315 334 315 294Q315 256 293 223Q271 190 234 164Q197 138 152.5 121.5Q108 105 63 100Q62 96 61.5 91.5Q61 87 61 77Q61 72 62.5 59.5Q64 47 71 33Q78 19 94 9Q110 -1 138 -1Q180 -1 222.5 22.5Q265 46 302.5 85Q340 124 365 172Q375 164 385 156Q358 96 315.5 51Q273 6 221.5 -19Q170 -44 116 -44ZM74 137Q100 140 132 155Q164 170 193.5 193Q223 216 242 243.5Q261 271 261 299Q261 310 257 314Q253 318 244 318Q221 318 196 301.5Q171 285 147 258.5Q123 232 104 200Q85 168 74 137ZM288 419Q275 424 269.5 435.5Q264 447 264 452Q264 460 274 478.5Q284 497 300 517.5Q316 538 333.5 552.5Q351 567 367 567Q378 567 386.5 559.5Q395 552 397 532Q362 498 335.5 472.5Q309 447 288 419Z" />
+                                <path pathLength="1" style="--i:3" d="M116 -44Q52 -44 17.5 -9.5Q-17 25 -17 77Q-17 121 5.5 170.5Q28 220 66 263.5Q104 307 150 334Q196 361 242 361Q268 361 291.5 347.5Q315 334 315 294Q315 256 293 223Q271 190 234 164Q197 138 152.5 121.5Q108 105 63 100Q62 96 61.5 91.5Q61 87 61 77Q61 72 62.5 59.5Q64 47 71 33Q78 19 94 9Q110 -1 138 -1Q180 -1 222.5 22.5Q265 46 302.5 85Q340 124 365 172Q375 164 385 156Q358 96 315.5 51Q273 6 221.5 -19Q170 -44 116 -44Z" />
+                                <path pathLength="1" style="--i:4" d="M74 137Q100 140 132 155Q164 170 193.5 193Q223 216 242 243.5Q261 271 261 299Q261 310 257 314Q253 318 244 318Q221 318 196 301.5Q171 285 147 258.5Q123 232 104 200Q85 168 74 137Z" />
+                                <path pathLength="1" style="--i:5" d="M288 419Q275 424 269.5 435.5Q264 447 264 452Q264 460 274 478.5Q284 497 300 517.5Q316 538 333.5 552.5Q351 567 367 567Q378 567 386.5 559.5Q395 552 397 532Q362 498 335.5 472.5Q309 447 288 419Z" />
+                            </g>
+                            <g transform="translate(1284,0)"> {{-- n --}}
+                                <path class="cursive-title-fill" style="--fi:6" d="M337 -20Q298 -20 277.5 -0.5Q257 19 257 49Q257 69 264.0 91.5Q271 114 278.0 137.0Q285 160 285 181Q285 203 274.5 211.5Q264 220 250 220Q220 220 188.5 195.5Q157 171 127.5 134.0Q98 97 72.0 57.0Q46 17 27 -15Q8 -15 -9.0 -8.5Q-26 -2 -38 14Q-37 19 -26.5 44.5Q-16 70 -3.0 105.5Q10 141 20.0 180.0Q30 219 30 251Q37 259 51.5 267.0Q66 275 82 275Q117 275 117 245Q117 233 112.5 209.5Q108 186 100 156Q126 191 157.0 222.0Q188 253 221.5 272.5Q255 292 289 292Q332 292 352.5 263.0Q373 234 373 199Q373 169 363.0 143.0Q353 117 343.5 94.0Q334 71 334 49Q334 33 341.5 26.5Q349 20 358 20Q382 20 408.0 43.0Q434 66 457.5 101.5Q481 137 499 173L516 159Q495 110 468.5 69.5Q442 29 409.5 4.5Q377 -20 337 -20Z" />
+                                <path pathLength="1" style="--i:6" d="M337 -20Q298 -20 277.5 -0.5Q257 19 257 49Q257 69 264.0 91.5Q271 114 278.0 137.0Q285 160 285 181Q285 203 274.5 211.5Q264 220 250 220Q220 220 188.5 195.5Q157 171 127.5 134.0Q98 97 72.0 57.0Q46 17 27 -15Q8 -15 -9.0 -8.5Q-26 -2 -38 14Q-37 19 -26.5 44.5Q-16 70 -3.0 105.5Q10 141 20.0 180.0Q30 219 30 251Q37 259 51.5 267.0Q66 275 82 275Q117 275 117 245Q117 233 112.5 209.5Q108 186 100 156Q126 191 157.0 222.0Q188 253 221.5 272.5Q255 292 289 292Q332 292 352.5 263.0Q373 234 373 199Q373 169 363.0 143.0Q353 117 343.5 94.0Q334 71 334 49Q334 33 341.5 26.5Q349 20 358 20Q382 20 408.0 43.0Q434 66 457.5 101.5Q481 137 499 173L516 159Q495 110 468.5 69.5Q442 29 409.5 4.5Q377 -20 337 -20Z" />
+                            </g>
+                            <g transform="translate(1757,0)"> {{-- e --}}
+                                <path class="cursive-title-fill" style="--fi:8" d="M116 -44Q52 -44 17.5 -9.5Q-17 25 -17 77Q-17 121 5.5 170.5Q28 220 66.0 263.5Q104 307 150.0 334.0Q196 361 242 361Q268 361 291.5 347.5Q315 334 315 294Q315 256 293.0 223.0Q271 190 234.0 164.0Q197 138 152.5 121.5Q108 105 63 100Q62 96 61.5 91.5Q61 87 61 77Q61 72 62.5 59.5Q64 47 71.0 33.0Q78 19 94.0 9.0Q110 -1 138 -1Q180 -1 222.5 22.5Q265 46 302.5 85.0Q340 124 365 172L385 156Q358 96 315.5 51.0Q273 6 221.5 -19.0Q170 -44 116 -44ZM74 137Q100 140 132.0 155.0Q164 170 193.5 193.0Q223 216 242.0 243.5Q261 271 261 299Q261 310 257.0 314.0Q253 318 244 318Q221 318 196.0 301.5Q171 285 147.0 258.5Q123 232 104.0 200.0Q85 168 74 137Z" />
+                                <path pathLength="1" style="--i:7" d="M116 -44Q52 -44 17.5 -9.5Q-17 25 -17 77Q-17 121 5.5 170.5Q28 220 66.0 263.5Q104 307 150.0 334.0Q196 361 242 361Q268 361 291.5 347.5Q315 334 315 294Q315 256 293.0 223.0Q271 190 234.0 164.0Q197 138 152.5 121.5Q108 105 63 100Q62 96 61.5 91.5Q61 87 61 77Q61 72 62.5 59.5Q64 47 71.0 33.0Q78 19 94.0 9.0Q110 -1 138 -1Q180 -1 222.5 22.5Q265 46 302.5 85.0Q340 124 365 172L385 156Q358 96 315.5 51.0Q273 6 221.5 -19.0Q170 -44 116 -44Z" />
+                                <path pathLength="1" style="--i:8" d="M74 137Q100 140 132.0 155.0Q164 170 193.5 193.0Q223 216 242.0 243.5Q261 271 261 299Q261 310 257.0 314.0Q253 318 244 318Q221 318 196.0 301.5Q171 285 147.0 258.5Q123 232 104.0 200.0Q85 168 74 137Z" />
+                            </g>
+                            <g transform="translate(2098,0)"> {{-- m --}}
+                                <path class="cursive-title-fill" style="--fi:9" d="M523 -31Q484 -31 465.0 -8.0Q446 15 446 47Q446 70 453.0 93.0Q460 116 467.0 138.5Q474 161 474 179Q474 196 467.5 202.5Q461 209 451 209Q428 209 397.5 174.0Q367 139 322 72Q306 48 292.0 21.5Q278 -5 267 -23Q258 -23 243.5 -20.0Q229 -17 218.0 -11.5Q207 -6 207 3Q207 12 217.0 38.0Q227 64 240.0 98.5Q253 133 263.0 166.5Q273 200 273 223Q273 237 268.0 245.0Q263 253 252 253Q231 253 201.5 228.0Q172 203 139.5 162.5Q107 122 78.5 72.5Q50 23 32 -27Q21 -27 5.0 -22.5Q-11 -18 -23.0 -11.5Q-35 -5 -35 0Q-35 1 -28.0 28.5Q-21 56 -11.0 97.0Q-1 138 10.0 181.0Q21 224 29 256Q32 267 51.0 275.5Q70 284 84 284Q98 284 108.0 275.0Q118 266 118 251Q118 241 114.0 222.0Q110 203 104 179Q125 207 148.5 234.5Q172 262 197.5 284.0Q223 306 248.5 319.0Q274 332 299 332Q336 332 349.0 305.5Q362 279 362 248Q362 235 360.0 222.5Q358 210 354.5 197.5Q351 185 345 168Q364 196 386.5 219.5Q409 243 435.0 257.0Q461 271 490 271Q529 271 544.0 247.5Q559 224 559 196Q559 170 550.5 141.5Q542 113 533.5 87.5Q525 62 525 44Q525 34 530.0 25.5Q535 17 550 17Q577 17 602.0 42.0Q627 67 648.5 103.5Q670 140 685 173L702 152Q686 111 660.5 68.5Q635 26 601.0 -2.5Q567 -31 523 -31Z" />
+                                <path pathLength="1" style="--i:9" d="M523 -31Q484 -31 465.0 -8.0Q446 15 446 47Q446 70 453.0 93.0Q460 116 467.0 138.5Q474 161 474 179Q474 196 467.5 202.5Q461 209 451 209Q428 209 397.5 174.0Q367 139 322 72Q306 48 292.0 21.5Q278 -5 267 -23Q258 -23 243.5 -20.0Q229 -17 218.0 -11.5Q207 -6 207 3Q207 12 217.0 38.0Q227 64 240.0 98.5Q253 133 263.0 166.5Q273 200 273 223Q273 237 268.0 245.0Q263 253 252 253Q231 253 201.5 228.0Q172 203 139.5 162.5Q107 122 78.5 72.5Q50 23 32 -27Q21 -27 5.0 -22.5Q-11 -18 -23.0 -11.5Q-35 -5 -35 0Q-35 1 -28.0 28.5Q-21 56 -11.0 97.0Q-1 138 10.0 181.0Q21 224 29 256Q32 267 51.0 275.5Q70 284 84 284Q98 284 108.0 275.0Q118 266 118 251Q118 241 114.0 222.0Q110 203 104 179Q125 207 148.5 234.5Q172 262 197.5 284.0Q223 306 248.5 319.0Q274 332 299 332Q336 332 349.0 305.5Q362 279 362 248Q362 235 360.0 222.5Q358 210 354.5 197.5Q351 185 345 168Q364 196 386.5 219.5Q409 243 435.0 257.0Q461 271 490 271Q529 271 544.0 247.5Q559 224 559 196Q559 170 550.5 141.5Q542 113 533.5 87.5Q525 62 525 44Q525 34 530.0 25.5Q535 17 550 17Q577 17 602.0 42.0Q627 67 648.5 103.5Q670 140 685 173L702 152Q686 111 660.5 68.5Q635 26 601.0 -2.5Q567 -31 523 -31Z" />
+                            </g>
+                            <g transform="translate(2758,0)"> {{-- e --}}
+                                <path class="cursive-title-fill" style="--fi:11" d="M116 -44Q52 -44 17.5 -9.5Q-17 25 -17 77Q-17 121 5.5 170.5Q28 220 66.0 263.5Q104 307 150.0 334.0Q196 361 242 361Q268 361 291.5 347.5Q315 334 315 294Q315 256 293.0 223.0Q271 190 234.0 164.0Q197 138 152.5 121.5Q108 105 63 100Q62 96 61.5 91.5Q61 87 61 77Q61 72 62.5 59.5Q64 47 71.0 33.0Q78 19 94.0 9.0Q110 -1 138 -1Q180 -1 222.5 22.5Q265 46 302.5 85.0Q340 124 365 172L385 156Q358 96 315.5 51.0Q273 6 221.5 -19.0Q170 -44 116 -44ZM74 137Q100 140 132.0 155.0Q164 170 193.5 193.0Q223 216 242.0 243.5Q261 271 261 299Q261 310 257.0 314.0Q253 318 244 318Q221 318 196.0 301.5Q171 285 147.0 258.5Q123 232 104.0 200.0Q85 168 74 137Z" />
+                                <path pathLength="1" style="--i:10" d="M116 -44Q52 -44 17.5 -9.5Q-17 25 -17 77Q-17 121 5.5 170.5Q28 220 66.0 263.5Q104 307 150.0 334.0Q196 361 242 361Q268 361 291.5 347.5Q315 334 315 294Q315 256 293.0 223.0Q271 190 234.0 164.0Q197 138 152.5 121.5Q108 105 63 100Q62 96 61.5 91.5Q61 87 61 77Q61 72 62.5 59.5Q64 47 71.0 33.0Q78 19 94.0 9.0Q110 -1 138 -1Q180 -1 222.5 22.5Q265 46 302.5 85.0Q340 124 365 172L385 156Q358 96 315.5 51.0Q273 6 221.5 -19.0Q170 -44 116 -44Z" />
+                                <path pathLength="1" style="--i:11" d="M74 137Q100 140 132.0 155.0Q164 170 193.5 193.0Q223 216 242.0 243.5Q261 271 261 299Q261 310 257.0 314.0Q253 318 244 318Q221 318 196.0 301.5Q171 285 147.0 258.5Q123 232 104.0 200.0Q85 168 74 137Z" />
+                            </g>
+                            <g transform="translate(3099,0)"> {{-- n --}}
+                                <path class="cursive-title-fill" style="--fi:12" d="M337 -20Q298 -20 277.5 -0.5Q257 19 257 49Q257 69 264.0 91.5Q271 114 278.0 137.0Q285 160 285 181Q285 203 274.5 211.5Q264 220 250 220Q220 220 188.5 195.5Q157 171 127.5 134.0Q98 97 72.0 57.0Q46 17 27 -15Q8 -15 -9.0 -8.5Q-26 -2 -38 14Q-37 19 -26.5 44.5Q-16 70 -3.0 105.5Q10 141 20.0 180.0Q30 219 30 251Q37 259 51.5 267.0Q66 275 82 275Q117 275 117 245Q117 233 112.5 209.5Q108 186 100 156Q126 191 157.0 222.0Q188 253 221.5 272.5Q255 292 289 292Q332 292 352.5 263.0Q373 234 373 199Q373 169 363.0 143.0Q353 117 343.5 94.0Q334 71 334 49Q334 33 341.5 26.5Q349 20 358 20Q382 20 408.0 43.0Q434 66 457.5 101.5Q481 137 499 173L516 159Q495 110 468.5 69.5Q442 29 409.5 4.5Q377 -20 337 -20Z" />
+                                <path pathLength="1" style="--i:12" d="M337 -20Q298 -20 277.5 -0.5Q257 19 257 49Q257 69 264.0 91.5Q271 114 278.0 137.0Q285 160 285 181Q285 203 274.5 211.5Q264 220 250 220Q220 220 188.5 195.5Q157 171 127.5 134.0Q98 97 72.0 57.0Q46 17 27 -15Q8 -15 -9.0 -8.5Q-26 -2 -38 14Q-37 19 -26.5 44.5Q-16 70 -3.0 105.5Q10 141 20.0 180.0Q30 219 30 251Q37 259 51.5 267.0Q66 275 82 275Q117 275 117 245Q117 233 112.5 209.5Q108 186 100 156Q126 191 157.0 222.0Q188 253 221.5 272.5Q255 292 289 292Q332 292 352.5 263.0Q373 234 373 199Q373 169 363.0 143.0Q353 117 343.5 94.0Q334 71 334 49Q334 33 341.5 26.5Q349 20 358 20Q382 20 408.0 43.0Q434 66 457.5 101.5Q481 137 499 173L516 159Q495 110 468.5 69.5Q442 29 409.5 4.5Q377 -20 337 -20Z" />
+                            </g>
+                            <g transform="translate(3572,0)"> {{-- t --}}
+                                <path class="cursive-title-fill" style="--fi:13" d="M91 -46Q47 -46 20.0 -20.0Q-7 6 -7 59Q-7 100 8.5 161.0Q24 222 48 287Q41 289 31.5 290.5Q22 292 13 296V327Q29 325 39.5 324.0Q50 323 61 322Q82 375 106.5 424.5Q131 474 155.5 513.0Q180 552 202.0 574.5Q224 597 241 597Q251 597 260.0 589.5Q269 582 269 568Q269 548 248.5 511.0Q228 474 198.0 424.5Q168 375 140 319Q148 319 156.0 319.0Q164 319 171 319Q215 319 250.5 320.5Q286 322 323 326V293Q268 288 222.0 285.0Q176 282 134 281Q131 281 128.0 281.0Q125 281 122 281Q101 232 85.5 180.5Q70 129 70 80Q70 39 83.0 22.0Q96 5 124 5Q174 5 226.5 50.5Q279 96 318 174L332 164Q306 105 267.5 57.0Q229 9 184.0 -18.5Q139 -46 91 -46Z" />
+                                <path pathLength="1" style="--i:13" d="M91 -46Q47 -46 20.0 -20.0Q-7 6 -7 59Q-7 100 8.5 161.0Q24 222 48 287Q41 289 31.5 290.5Q22 292 13 296V327Q29 325 39.5 324.0Q50 323 61 322Q82 375 106.5 424.5Q131 474 155.5 513.0Q180 552 202.0 574.5Q224 597 241 597Q251 597 260.0 589.5Q269 582 269 568Q269 548 248.5 511.0Q228 474 198.0 424.5Q168 375 140 319Q148 319 156.0 319.0Q164 319 171 319Q215 319 250.5 320.5Q286 322 323 326V293Q268 288 222.0 285.0Q176 282 134 281Q131 281 128.0 281.0Q125 281 122 281Q101 232 85.5 180.5Q70 129 70 80Q70 39 83.0 22.0Q96 5 124 5Q174 5 226.5 50.5Q279 96 318 174L332 164Q306 105 267.5 57.0Q229 9 184.0 -18.5Q139 -46 91 -46Z" />
+                            </g>
+                            <g transform="translate(3860,0)"> {{-- s --}}
+                                <path class="cursive-title-fill" style="--fi:16" d="M117 -51Q67 -51 36.5 -30.5Q6 -10 -7.0 21.5Q-20 53 -20 86Q-20 115 -12.0 131.0Q-4 147 8.0 154.5Q20 162 30.5 166.0Q41 170 46 175Q71 201 97.5 235.5Q124 270 143 312V322Q143 362 156.5 378.5Q170 395 188 395Q200 395 205.5 389.0Q211 383 212 375Q212 369 209.5 361.0Q207 353 207 339Q207 309 221.5 270.5Q236 232 250.5 189.0Q265 146 265 101Q265 89 264.0 79.0Q263 69 261 60Q292 68 322.0 94.5Q352 121 379 173L391 164Q372 107 336.0 72.5Q300 38 252 30Q236 -11 199.5 -31.0Q163 -51 117 -51ZM110 -7Q130 -7 147.0 3.0Q164 13 174 32Q133 41 100.0 64.0Q67 87 49 111Q35 108 35 84Q35 51 54.0 22.0Q73 -7 110 -7ZM182 62Q184 69 184.5 78.5Q185 88 185 93Q184 138 173.0 182.0Q162 226 151 272Q133 241 109.0 205.0Q85 169 64 147Q80 120 111.0 96.0Q142 72 182 62Z" />
+                                <path pathLength="1" style="--i:14" d="M117 -51Q67 -51 36.5 -30.5Q6 -10 -7.0 21.5Q-20 53 -20 86Q-20 115 -12.0 131.0Q-4 147 8.0 154.5Q20 162 30.5 166.0Q41 170 46 175Q71 201 97.5 235.5Q124 270 143 312V322Q143 362 156.5 378.5Q170 395 188 395Q200 395 205.5 389.0Q211 383 212 375Q212 369 209.5 361.0Q207 353 207 339Q207 309 221.5 270.5Q236 232 250.5 189.0Q265 146 265 101Q265 89 264.0 79.0Q263 69 261 60Q292 68 322.0 94.5Q352 121 379 173L391 164Q372 107 336.0 72.5Q300 38 252 30Q236 -11 199.5 -31.0Q163 -51 117 -51Z" />
+                                <path pathLength="1" style="--i:15" d="M110 -7Q130 -7 147.0 3.0Q164 13 174 32Q133 41 100.0 64.0Q67 87 49 111Q35 108 35 84Q35 51 54.0 22.0Q73 -7 110 -7Z" />
+                                <path pathLength="1" style="--i:16" d="M182 62Q184 69 184.5 78.5Q185 88 185 93Q184 138 173.0 182.0Q162 226 151 272Q133 241 109.0 205.0Q85 169 64 147Q80 120 111.0 96.0Q142 72 182 62Z" />
+                            </g>
+            </g>
+        </svg>
+        </div>
+        <div class="flex flex-wrap justify-center gap-2 mt-4 page-fade-in" style="animation-delay: 0.1s">
+            <a href="{{ route('planning.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50">Voir en calendrier</a>
+            <a href="{{ route('evenements.export') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50">Exporter (CSV)</a>
+            <a href="{{ route('evenements.create') }}" class="inline-flex items-center px-4 py-2 bg-bde-orange border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:brightness-95">Créer un événement</a>
         </div>
     </x-slot>
 
-    <div class="py-8">
+    <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
             @if (session('status'))
                 <div class="bg-green-50 text-green-800 text-sm rounded-md p-3">{{ session('status') }}</div>
             @endif
 
-            <div class="bg-white shadow-sm sm:rounded-lg overflow-hidden">
-                <table class="min-w-full divide-y divide-gray-200 text-sm">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-4 py-2 text-left font-medium text-gray-500">Nom</th>
-                            <th class="px-4 py-2 text-left font-medium text-gray-500">Date</th>
-                            <th class="px-4 py-2 text-left font-medium text-gray-500">Lieu</th>
-                            <th class="px-4 py-2 text-left font-medium text-gray-500">Participants</th>
-                            <th class="px-4 py-2"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
-                        @forelse ($evenements as $evenement)
+            <div class="hidden sm:block page-fade-in bg-white shadow-sm rounded-lg overflow-hidden" style="animation-delay: 0.2s">
+                <div class="fit-screen-table">
+                    <table class="min-w-full divide-y divide-gray-200 text-sm">
+                        <thead class="bg-gray-50">
                             <tr>
-                                <td class="px-4 py-2">
-                                    <a href="{{ route('evenements.show', $evenement) }}" class="text-gray-900 hover:underline">{{ $evenement->nom }}</a>
-                                </td>
-                                <td class="px-4 py-2 text-gray-600">{{ $evenement->date->format('d/m/Y H:i') }}</td>
-                                <td class="px-4 py-2 text-gray-600">{{ $evenement->lieu ?? 'Non renseigné' }}</td>
-                                <td class="px-4 py-2 text-gray-600">{{ $evenement->etudiants_count }}</td>
-                                <td class="px-4 py-2 text-right space-x-2">
-                                    <a href="{{ route('evenements.edit', $evenement) }}" class="text-gray-500 hover:text-gray-800">Modifier</a>
-                                    <form action="{{ route('evenements.destroy', $evenement) }}" method="POST" class="inline" onsubmit="return confirm('Supprimer cet événement ?');">
-                                        @csrf @method('DELETE')
-                                        <button type="submit" class="text-red-500 hover:text-red-700">Supprimer</button>
-                                    </form>
-                                </td>
+                                <th class="px-4 py-2 text-left font-medium text-gray-500">Nom</th>
+                                <th class="px-4 py-2 text-left font-medium text-gray-500">Date</th>
+                                <th class="px-4 py-2 text-left font-medium text-gray-500">Lieu</th>
+                                <th class="px-4 py-2 text-left font-medium text-gray-500">Participants</th>
+                                <th class="px-4 py-2 text-left font-medium text-gray-500">Paiement</th>
+                                <th class="px-4 py-2"></th>
                             </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5" class="px-4 py-6 text-center text-gray-500">Aucun événement pour le moment.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            @forelse ($evenements as $evenement)
+                                <tr>
+                                    <td class="px-4 py-2">
+                                        <a href="{{ route('evenements.show', $evenement) }}" class="text-gray-900 hover:underline">{{ $evenement->nom }}</a>
+                                    </td>
+                                    <td class="px-4 py-2 text-gray-600">{{ $evenement->date->format('d/m/Y H:i') }}</td>
+                                    <td class="px-4 py-2 text-gray-600">{{ $evenement->lieu ?? 'Non renseigné' }}</td>
+                                    <td class="px-4 py-2 text-gray-600">{{ $evenement->etudiants_count }}</td>
+                                    <td class="px-4 py-2">
+                                        @if ($evenement->payant)
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs {{ $evenement->payes_count >= $evenement->etudiants_count && $evenement->etudiants_count > 0 ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700' }} font-medium">
+                                                {{ $evenement->payes_count }}/{{ $evenement->etudiants_count }} payé(s)
+                                            </span>
+                                        @else
+                                            <span class="text-gray-500">Gratuit</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-4 py-2 text-right space-x-3">
+                                        <a href="{{ route('evenements.edit', $evenement) }}" class="inline-flex items-center gap-1 text-gray-500 hover:text-gray-800">
+                                            <x-heroicon-m-pencil-square class="h-4 w-4" /> Modifier
+                                        </a>
+                                        <form action="{{ route('evenements.destroy', $evenement) }}" method="POST" class="inline" onsubmit="return confirm('Supprimer cet événement ?');">
+                                            @csrf @method('DELETE')
+                                            <button type="submit" class="inline-flex items-center gap-1 text-red-800 hover:text-red-900">
+                                                <x-heroicon-m-trash class="h-4 w-4" /> Supprimer
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="px-4 py-10 text-center text-gray-500">
+                                        <x-heroicon-o-calendar class="h-10 w-10 mx-auto mb-2 text-gray-300" />
+                                        Aucun événement pour le moment.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="sm:hidden page-fade-in space-y-3" style="animation-delay: 0.2s">
+                @forelse ($evenements as $evenement)
+                    <div class="bg-white shadow-sm rounded-lg p-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <a href="{{ route('evenements.show', $evenement) }}" class="font-medium text-gray-900">{{ $evenement->nom }}</a>
+                            @if ($evenement->payant)
+                                <span class="shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs {{ $evenement->payes_count >= $evenement->etudiants_count && $evenement->etudiants_count > 0 ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700' }} font-medium">
+                                    {{ $evenement->payes_count }}/{{ $evenement->etudiants_count }} payé(s)
+                                </span>
+                            @else
+                                <span class="shrink-0 text-xs text-gray-500">Gratuit</span>
+                            @endif
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1">{{ $evenement->date->format('d/m/Y H:i') }}</p>
+                        <p class="text-sm text-gray-500">{{ $evenement->lieu ?? 'Lieu non renseigné' }} · {{ $evenement->etudiants_count }} participant(s)</p>
+                        <div class="flex items-center gap-4 mt-3 pt-3 border-t border-gray-100">
+                            <a href="{{ route('evenements.edit', $evenement) }}" class="inline-flex items-center gap-1 text-sm text-gray-600">
+                                <x-heroicon-m-pencil-square class="h-4 w-4" /> Modifier
+                            </a>
+                            <form action="{{ route('evenements.destroy', $evenement) }}" method="POST" onsubmit="return confirm('Supprimer cet événement ?');">
+                                @csrf @method('DELETE')
+                                <button type="submit" class="inline-flex items-center gap-1 text-sm text-red-800">
+                                    <x-heroicon-m-trash class="h-4 w-4" /> Supprimer
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @empty
+                    <div class="bg-white shadow-sm rounded-lg p-10 text-center text-gray-500">
+                        <x-heroicon-o-calendar class="h-10 w-10 mx-auto mb-2 text-gray-300" />
+                        Aucun événement pour le moment.
+                    </div>
+                @endforelse
             </div>
 
             {{ $evenements->links() }}

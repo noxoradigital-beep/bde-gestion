@@ -31,6 +31,12 @@
 .cursive-title-svg {
     height: 84px;
     width: auto;
+    /* Les titres longs ("Nouvel etudiant", "Statistiques"...) sont deja a la
+       limite de la largeur sur un ecran de tablette : sans ce plafond, ils
+       debordent purement et simplement sur un telephone (largeur fixe basee
+       sur la hauteur, jamais reduite). Le SVG garde ses proportions et
+       retrecit tout seul (viewBox + preserveAspectRatio par defaut). */
+    max-width: 100%;
     overflow: visible;
 }
 

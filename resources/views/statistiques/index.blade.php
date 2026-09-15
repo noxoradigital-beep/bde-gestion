@@ -68,27 +68,29 @@
 
     <div class="py-4">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 space-y-3">
-            <p class="text-sm text-gray-500">
-                Ces chiffres sont destinés à être transmis à la scolarité. Export CSV disponible depuis les pages
-                Étudiants et Événements.
-            </p>
+            <div class="page-fade-in bg-white shadow-sm rounded-lg p-3" style="animation-delay: 0.1s">
+                <p class="text-sm text-gray-700">
+                    Ces chiffres sont destinés à être transmis à la scolarité. Export CSV disponible depuis les pages
+                    Étudiants et Événements.
+                </p>
+            </div>
 
-            <div class="grid grid-cols-2 gap-4">
-                <div class="page-fade-in bg-white shadow-sm sm:rounded-lg p-4" style="animation-delay: 2.2s">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="page-fade-in bg-white shadow-sm rounded-lg p-4" x-data="compteur({{ $totalEtudiants }}, 100)" style="animation-delay: 0.1s">
                     <p class="text-sm text-gray-500">Étudiants enregistrés</p>
-                    <p class="text-3xl font-semibold text-gray-900">{{ $totalEtudiants }}</p>
+                    <p class="text-3xl font-semibold text-gray-900" x-text="valeur">{{ $totalEtudiants }}</p>
                 </div>
-                <div class="page-fade-in bg-white shadow-sm sm:rounded-lg p-4" style="animation-delay: 2.2s">
+                <div class="page-fade-in bg-white shadow-sm rounded-lg p-4" x-data="compteur({{ $totalEvenements }}, 100)" style="animation-delay: 0.1s">
                     <p class="text-sm text-gray-500">Événements organisés</p>
-                    <p class="text-3xl font-semibold text-gray-900">{{ $totalEvenements }}</p>
+                    <p class="text-3xl font-semibold text-gray-900" x-text="valeur">{{ $totalEvenements }}</p>
                 </div>
             </div>
 
-            <div class="page-fade-in bg-white shadow-sm sm:rounded-lg overflow-hidden" style="animation-delay: 2.3s">
+            <div class="page-fade-in bg-white shadow-sm rounded-lg overflow-hidden" style="animation-delay: 0.2s">
                 <div class="px-6 py-2 border-b border-gray-100">
                     <h3 class="font-semibold text-gray-800">Participation par classe</h3>
                 </div>
-                <div class="fit-screen-table fit-screen-table--sm">
+                <div class="hidden sm:block fit-screen-table fit-screen-table--sm">
                     <table class="min-w-full divide-y divide-gray-200 text-sm">
                         <thead class="bg-gray-50">
                             <tr>
@@ -104,25 +106,46 @@
                                     <td class="px-4 py-2">{{ $ligne->effectif }}</td>
                                     <td class="px-4 py-2">
                                         @if ($ligne->participants_actifs > 0)
-                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-emerald-50 text-emerald-600 font-medium">{{ $ligne->participants_actifs }}</span>
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-emerald-50 text-emerald-700 font-medium">{{ $ligne->participants_actifs }}</span>
                                         @else
                                             {{ $ligne->participants_actifs }}
                                         @endif
                                     </td>
                                 </tr>
                             @empty
-                                <tr><td colspan="3" class="px-4 py-6 text-center text-gray-500">Pas encore de données.</td></tr>
+                                <tr><td colspan="3" class="px-4 py-6 text-center text-gray-500"><x-heroicon-o-inbox class="h-4 w-4 inline-block align-text-bottom mr-1 text-gray-300" /> Pas encore de données.</td></tr>
                             @endforelse
                         </tbody>
                     </table>
                 </div>
+
+                {{-- Sur mobile : une ligne compacte par classe plutot qu'un tableau
+                     (en-tete blanc plein tranchant sur la carte en verre, colonnes
+                     ecrasees). --}}
+                <div class="sm:hidden divide-y divide-gray-100 text-sm">
+                    @forelse ($tauxParClasse as $ligne)
+                        <div class="flex items-center justify-between px-4 py-2.5">
+                            <div>
+                                <span class="font-medium text-gray-900">{{ $ligne->classe }}</span>
+                                <span class="text-gray-500">· {{ $ligne->effectif }} étudiant(s)</span>
+                            </div>
+                            @if ($ligne->participants_actifs > 0)
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-emerald-50 text-emerald-700 font-medium">{{ $ligne->participants_actifs }} venu(s)</span>
+                            @else
+                                <span class="text-gray-500 text-xs">0 venu</span>
+                            @endif
+                        </div>
+                    @empty
+                        <div class="px-4 py-6 text-center text-gray-500"><x-heroicon-o-inbox class="h-4 w-4 inline-block align-text-bottom mr-1 text-gray-300" /> Pas encore de données.</div>
+                    @endforelse
+                </div>
             </div>
 
-            <div class="page-fade-in bg-white shadow-sm sm:rounded-lg overflow-hidden" style="animation-delay: 2.4s">
+            <div class="page-fade-in bg-white shadow-sm rounded-lg overflow-hidden" style="animation-delay: 0.3s">
                 <div class="px-6 py-2 border-b border-gray-100">
                     <h3 class="font-semibold text-gray-800">Derniers événements</h3>
                 </div>
-                <div class="fit-screen-table fit-screen-table--sm">
+                <div class="hidden sm:block fit-screen-table fit-screen-table--sm">
                     <table class="min-w-full divide-y divide-gray-200 text-sm">
                         <thead class="bg-gray-50">
                             <tr>
@@ -140,17 +163,38 @@
                                     <td class="px-4 py-2">{{ $evenement->etudiants_count }}</td>
                                     <td class="px-4 py-2">
                                         @if ($evenement->presents_count > 0)
-                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-emerald-50 text-emerald-600 font-medium">{{ $evenement->presents_count }}</span>
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-emerald-50 text-emerald-700 font-medium">{{ $evenement->presents_count }}</span>
                                         @else
                                             {{ $evenement->presents_count }}
                                         @endif
                                     </td>
                                 </tr>
                             @empty
-                                <tr><td colspan="4" class="px-4 py-6 text-center text-gray-500">Pas encore d'événement.</td></tr>
+                                <tr><td colspan="4" class="px-4 py-6 text-center text-gray-500"><x-heroicon-o-calendar class="h-4 w-4 inline-block align-text-bottom mr-1 text-gray-300" /> Pas encore d'événement.</td></tr>
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+
+                <div class="sm:hidden divide-y divide-gray-100 text-sm">
+                    @forelse ($evenementsRecents as $evenement)
+                        <div class="px-4 py-2.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-900">{{ $evenement->nom }}</span>
+                                <span class="text-gray-500 text-xs shrink-0 ml-2">{{ $evenement->date->format('d/m/Y') }}</span>
+                            </div>
+                            <div class="flex items-center gap-2 mt-1 text-gray-600">
+                                <span>{{ $evenement->etudiants_count }} inscrit(s)</span>
+                                @if ($evenement->presents_count > 0)
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-emerald-50 text-emerald-700 font-medium">{{ $evenement->presents_count }} présent(s)</span>
+                                @else
+                                    <span class="text-gray-500 text-xs">0 présent</span>
+                                @endif
+                            </div>
+                        </div>
+                    @empty
+                        <div class="px-4 py-6 text-center text-gray-500"><x-heroicon-o-calendar class="h-4 w-4 inline-block align-text-bottom mr-1 text-gray-300" /> Pas encore d'événement.</div>
+                    @endforelse
                 </div>
             </div>
         </div>

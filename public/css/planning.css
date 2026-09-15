@@ -156,13 +156,11 @@
 
 /* ----- Grille du calendrier ----- */
 
-/* Hauteur limitee pour que la page tienne a l'ecran sans scroll : seule la
-   grille defile (verticalement, pour les mois a 6 semaines), avec les noms
-   des jours colles en haut. */
+/* Le mois entier (4 a 6 semaines) s'affiche en entier, sans scroll interne :
+   il y a largement la place sur la page. Seul le defilement horizontal reste
+   en secours sur tres petit ecran. */
 .planning-scroll {
     overflow-x: auto;
-    overflow-y: auto;
-    max-height: 48vh;
 }
 
 .planning-weekdays {
@@ -197,7 +195,7 @@
 
 .planning-day {
     position: relative;
-    min-height: 92px;
+    min-height: 120px;
     padding: 8px;
     border-right: 1px solid #e5e7eb;
 }
@@ -271,4 +269,65 @@
     font-size: 0.7rem;
     color: #6b7280;
     padding-left: 2px;
+}
+
+/* ----- Version mobile : le calendrier retrecit pour tenir sur l'ecran au
+   lieu de deborder (les 7 colonnes avaient un plancher de 120px chacune,
+   soit 840px minimum - largement plus qu'un telephone). Colonnes elastiques
+   sans plancher, cases et textes reduits, heure de l'evenement masquee. ----- */
+@media (max-width: 640px) {
+    .planning-header {
+        padding: 14px;
+    }
+
+    .planning-title h2 {
+        font-size: 1rem;
+    }
+
+    .planning-weekdays,
+    .planning-week {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    .planning-weekdays > div {
+        padding: 6px 0;
+        font-size: 0.6rem;
+    }
+
+    .planning-day {
+        min-height: 58px;
+        padding: 3px;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .planning-day__number {
+        width: 18px;
+        height: 18px;
+        font-size: 0.65rem;
+    }
+
+    .planning-day__events {
+        margin-top: 2px;
+        gap: 2px;
+    }
+
+    .planning-event-card {
+        padding: 2px 3px;
+        border-radius: 4px;
+    }
+
+    .planning-event-card__name {
+        font-size: 0.55rem;
+    }
+
+    /* L'heure ne rentre plus a cote du nom sur une case aussi petite. */
+    .planning-event-card__time {
+        display: none;
+    }
+
+    .planning-day__more {
+        font-size: 0.55rem;
+        padding-left: 0;
+    }
 }

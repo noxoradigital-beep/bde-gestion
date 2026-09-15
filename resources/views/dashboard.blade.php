@@ -57,17 +57,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-4">
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="{{ route('etudiants.index') }}" class="page-fade-in bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 hover:brightness-95 transition" style="animation-delay: 2.2s">
+                <a href="{{ route('etudiants.index') }}" x-data="compteur({{ $totalEtudiants }}, 100)" class="page-fade-in bg-white overflow-hidden shadow-sm rounded-lg p-6 hover:brightness-95 transition" style="animation-delay: 0.1s">
                     <p class="text-sm text-gray-500">Étudiants enregistrés</p>
-                    <p class="text-3xl font-semibold text-gray-900">{{ $totalEtudiants }}</p>
+                    <p class="text-3xl font-semibold text-gray-900" x-text="valeur">{{ $totalEtudiants }}</p>
                 </a>
-                <a href="{{ route('planning.index') }}" class="page-fade-in bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 hover:brightness-95 transition" style="animation-delay: 2.3s">
+                <a href="{{ route('planning.index') }}" x-data="compteur({{ $totalEvenements }}, 200)" class="page-fade-in bg-white overflow-hidden shadow-sm rounded-lg p-6 hover:brightness-95 transition" style="animation-delay: 0.2s">
                     <p class="text-sm text-gray-500">Événements organisés</p>
-                    <p class="text-3xl font-semibold text-gray-900">{{ $totalEvenements }}</p>
+                    <p class="text-3xl font-semibold text-gray-900" x-text="valeur">{{ $totalEvenements }}</p>
                 </a>
             </div>
 
-            <div class="page-fade-in bg-white overflow-hidden shadow-sm sm:rounded-lg" style="animation-delay: 2.4s">
+            <div class="page-fade-in bg-white overflow-hidden shadow-sm rounded-lg" style="animation-delay: 0.3s">
                 <div class="p-6">
                     <h3 class="font-semibold text-gray-800 mb-4">Prochains événements</h3>
 
@@ -80,7 +80,10 @@
                             <span class="text-sm text-gray-500">{{ $evenement->etudiants_count }} inscrit(s)</span>
                         </a>
                     @empty
-                        <p class="text-sm text-gray-500">Aucun événement à venir pour le moment.</p>
+                        <div class="flex flex-col items-center text-center py-6">
+                            <x-heroicon-o-calendar class="h-10 w-10 text-gray-300 mb-2" />
+                            <p class="text-sm text-gray-500">Aucun événement à venir pour le moment.</p>
+                        </div>
                     @endforelse
                 </div>
             </div>

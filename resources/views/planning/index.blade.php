@@ -54,7 +54,7 @@
                 <div class="bg-green-50 text-green-800 text-sm rounded-md p-3">{{ session('status') }}</div>
             @endif
 
-            <div class="page-fade-in bg-white shadow-sm sm:rounded-lg overflow-hidden" style="animation-delay: 1.4s">
+            <div class="page-fade-in bg-white shadow-sm rounded-lg overflow-hidden" style="animation-delay: 0.1s">
 
                 {{-- En-tete : pastille du jour, titre du mois, navigation, actions --}}
                 <div class="planning-header">
@@ -98,7 +98,7 @@
 
                                     @if ($jour['evenements']->isNotEmpty())
                                         <div class="planning-day__events">
-                                            @foreach ($jour['evenements']->take(1) as $evenement)
+                                            @foreach ($jour['evenements']->take(2) as $evenement)
                                                 <a href="{{ route('evenements.show', $evenement) }}" class="planning-event-card"
                                                     title="{{ $evenement->nom }} ({{ $evenement->etudiants_count }} participant(s))">
                                                     <span class="planning-event-card__name">{{ $evenement->nom }}</span>
@@ -106,8 +106,8 @@
                                                 </a>
                                             @endforeach
 
-                                            @if ($jour['evenements']->count() > 1)
-                                                <span class="planning-day__more">+ {{ $jour['evenements']->count() - 1 }} de plus</span>
+                                            @if ($jour['evenements']->count() > 2)
+                                                <span class="planning-day__more">+ {{ $jour['evenements']->count() - 2 }} de plus</span>
                                             @endif
                                         </div>
                                     @endif

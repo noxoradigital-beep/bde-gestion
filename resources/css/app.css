@@ -23,16 +23,79 @@ body {
     100% { background-position: 0% 0%; }
 }
 
+/* Meme barre de defilement fine (sans fleches) que .fit-screen-table, mais
+   pour le scroll de la page entiere quand une page est plus haute que
+   l'ecran (ex: Membres BDE avec beaucoup d'invitations). */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(247, 82, 28, 0.35) transparent;
+}
+
+html::-webkit-scrollbar {
+    width: 10px;
+}
+
+html::-webkit-scrollbar-button {
+    display: none;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: rgba(247, 82, 28, 0.35);
+    border-radius: 999px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(247, 82, 28, 0.55);
+}
+
 /* Effet "verre depoli" (glassmorphism) : toutes les cartes/blocs du site
    utilisent la classe Tailwind bg-white (fond blanc plein). Cette regle,
    placee apres @tailwind utilities, la remplace partout par un blanc
    transparent + flou, pour laisser passer le fond anime derriere tout
    en gardant le texte bien lisible. */
 .bg-white {
-    background-color: rgba(255, 255, 255, 0.55) !important;
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    /* 0.72 plutot que 0.55 : au 0.55 d'origine, le texte gris clair
+       (text-gray-400/500, utilise partout pour les infos secondaires)
+       devenait illisible sur les couleurs vives du degrade BDE derriere. */
+    background-color: rgba(255, 255, 255, 0.72) !important;
+    /* 14px plutot que 20px : le flou de fond doit etre recalcule en continu
+       tant que le degrade anime derriere bouge (18s en boucle), sur chaque
+       carte de la page. Un rayon plus petit coute nettement moins cher au
+       GPU sur telephone, sans grande difference visible. */
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
     border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Meme avec le verre remonte a 0.72, text-gray-400/500 (utilise partout :
+   "Email", "Classe", dates, annotations...) reste sous le seuil de
+   contraste lisible (verifie au calcul : ratio ~1.4 a 3.4 selon la couleur
+   du degrade derriere, il faut 4.5). On les fonce au meme niveau que
+   text-gray-700, qui lui passe partout (5.8 a 7.3). Les icones (text-gray-300,
+   utilisees pour les etats vides) ne sont pas concernees. */
+.bg-white .text-gray-400,
+.bg-white .text-gray-500,
+.bg-white.text-gray-400,
+.bg-white.text-gray-500 {
+    color: #374151 !important;
+}
+
+/* Micro-interaction sur les vraies cartes de contenu (celles qui ont aussi
+   "page-fade-in" : stats, tableaux, formulaires... pas la barre de titre,
+   les modales ou les boutons qui ont deja leur propre effet au survol).
+   Leger agrandissement + ombre qui se creuse, pour que tout "reagisse au
+   doigt" comme le reste du site. */
+.page-fade-in.bg-white {
+    transition: transform 0.25s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.page-fade-in.bg-white:hover {
+    transform: scale(1.01);
+    box-shadow: 0 16px 32px -14px rgba(79, 17, 111, 0.3);
 }
 
 /* Boutons orange (primary-button...) : verre liquide teinte orange (fond
@@ -77,18 +140,160 @@ body {
 .fit-screen-table {
     max-height: 42vh;
     overflow-y: auto;
+    /* Sur mobile, le tableau garde une largeur confortable et defile sur le
+       cote plutot que d'ecraser les colonnes ("Modifier" coupe en "Mod"). */
+    overflow-x: auto;
+}
+
+.fit-screen-table table {
+    min-width: 640px;
 }
 
 .fit-screen-table thead th {
     position: sticky;
     top: 0;
     z-index: 1;
+    /* Le fond pose sur <thead class="bg-gray-50"> ne suit pas les cellules
+       une fois qu'elles sont "sticky" (bug connu de Chrome sur les tableaux) :
+       sans ceci le texte de la ligne du dessous transparait a travers l'en-tete
+       fige pendant le defilement. Meme gris que bg-gray-50. */
+    background-color: #f9fafb;
 }
 
 /* Variante plus courte : quand plusieurs tableaux doivent tenir sur la
    meme page (ex: Statistiques). */
 .fit-screen-table--sm {
     max-height: 20vh;
+}
+
+/* Barre de defilement fine et discrete (au lieu de la grosse barre grise du
+   navigateur avec ses fleches) sur les tableaux qui defilent. */
+.fit-screen-table {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(247, 82, 28, 0.35) transparent;
+}
+
+.fit-screen-table::-webkit-scrollbar {
+    width: 8px;
+}
+
+.fit-screen-table::-webkit-scrollbar-button {
+    display: none;
+}
+
+.fit-screen-table::-webkit-scrollbar-track {
+    /* Pas transparent : sinon l'en-tete fige (fond blanc plein, colle en haut)
+       "coupe" la barre net a l'endroit ou il recouvre le haut de la piste.
+       Un gris tres clair proche du fond de l'en-tete rend les deux continus. */
+    background: rgba(249, 250, 251, 0.5);
+}
+
+.fit-screen-table::-webkit-scrollbar-thumb {
+    background-color: rgba(247, 82, 28, 0.35);
+    border-radius: 999px;
+}
+
+.fit-screen-table::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(247, 82, 28, 0.55);
+}
+
+/* Sur mobile, la boite avec hauteur plafonnee + scroll interne (pensee pour
+   qu'une page entiere de bureau tienne sans scroll) n'a plus de raison
+   d'etre : il n'y a qu'a laisser le contenu s'allonger et la PAGE (qui a
+   deja sa propre barre fine, voir html plus haut) defiler normalement.
+   Meme principe que le calendrier Planning. */
+@media (max-width: 640px) {
+    .fit-screen-table,
+    .fit-screen-table--sm {
+        max-height: none;
+        overflow-y: visible;
+    }
+
+    .fit-screen-table thead th {
+        position: static;
+    }
+
+    /* Les tableaux Etudiants/Evenements/Membres ont leur propre version en
+       cartes sur mobile (voir leurs pages) et sont caches en dessous de 640px :
+       ce plancher de 640px ne sert donc plus qu'a forcer un defilement lateral
+       inutile sur les tableaux plus simples (Statistiques) qui, eux, restent
+       affiches. Sans plancher, ils retrecissent normalement a la largeur de
+       l'ecran. */
+    .fit-screen-table table {
+        min-width: 0;
+    }
+}
+
+/* Champ "fichier" (import CSV) : le bouton gris du systeme d'exploitation
+   est remplace par un bouton orange BDE, le tout dans un encadre qui
+   reprend le style des autres champs du site. */
+input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 0.875rem;
+    color: #4b5563;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+}
+
+input[type="file"]:focus-visible {
+    outline: none;
+    border-color: #F7521C;
+    box-shadow: 0 0 0 1px #F7521C;
+}
+
+input[type="file"]::file-selector-button {
+    margin-right: 12px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
+    background-color: #F7521C;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    filter: brightness(0.95);
+}
+
+/* Listes deroulantes (role d'un membre, choix d'un etudiant...) : la fleche
+   grise par defaut de Tailwind Forms est remplacee par une fleche plus nette,
+   et le contour au clic reprend l'orange BDE au lieu du bleu par defaut.
+   Note : une fois la liste ouverte, son apparence (fond, surlignage) reste
+   geree par le systeme d'exploitation/le navigateur, aucun CSS n'agit dessus. */
+select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23F7521C'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
+    padding-right: 2rem !important;
+}
+
+select:focus {
+    border-color: #F7521C !important;
+    box-shadow: 0 0 0 3px rgba(247, 82, 28, 0.15), 0 0 12px rgba(213, 47, 94, 0.25) !important;
+    outline: none !important;
+}
+
+/* Halo orange/fuchsia BDE au clic dans un champ, a la place du contour bleu
+   par defaut de Tailwind Forms. S'applique a tous les champs texte/zone de
+   texte du site, meme ceux qui n'utilisent pas le composant <x-text-input>. */
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus,
+textarea:focus {
+    outline: none !important;
+    border-color: #F7521C !important;
+    box-shadow: 0 0 0 3px rgba(247, 82, 28, 0.15), 0 0 12px rgba(213, 47, 94, 0.25) !important;
+}
+
+/* Transition de page nativement geree par Chrome (aucune dependance) : un
+   fondu enchaine au lieu du "saut" brut d'une page a l'autre. Ignoree sans
+   effet secondaire par les navigateurs qui ne la supportent pas encore. */
+@view-transition {
+    navigation: auto;
 }
 
 /* Animation d'entree des blocs de page (cartes, tableaux...) : apparition

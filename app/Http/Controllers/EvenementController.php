@@ -15,6 +15,7 @@ class EvenementController extends Controller
     public function index(): View
     {
         $evenements = Evenement::withCount('etudiants')
+            ->withCount(['etudiants as payes_count' => fn ($query) => $query->where('participations.paye', true)])
             ->orderByDesc('date')
             ->paginate(20);
 

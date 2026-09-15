@@ -66,7 +66,7 @@
                 <div class="bg-red-50 text-red-800 text-sm rounded-md p-3">{{ $errors->first() }}</div>
             @endif
 
-            <div class="page-fade-in bg-white shadow-sm sm:rounded-lg overflow-hidden" style="animation-delay: 1.9s">
+            <div class="hidden sm:block page-fade-in bg-white shadow-sm rounded-lg overflow-hidden" style="animation-delay: 0.1s">
                 <div class="fit-screen-table fit-screen-table--sm">
                     <table class="min-w-full divide-y divide-gray-200 text-sm">
                         <thead class="bg-gray-50">
@@ -85,7 +85,7 @@
                                     <td class="px-4 py-2 text-gray-600">{{ $membre->email }}</td>
                                     <td class="px-4 py-2">
                                         @if ($membre->two_factor_enabled)
-                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-emerald-50 text-emerald-600">Activée</span>
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-emerald-50 text-emerald-700">Activée</span>
                                         @else
                                             <span class="text-gray-500">Désactivée</span>
                                         @endif
@@ -104,7 +104,9 @@
                                             <form method="POST" action="{{ route('membres.destroy', $membre) }}"
                                                 onsubmit="return confirm('Supprimer {{ $membre->name }} ? Cette action est irréversible.');">
                                                 @csrf @method('DELETE')
-                                                <button type="submit" class="text-red-500 hover:text-red-700 text-xs">Supprimer</button>
+                                                <button type="submit" class="inline-flex items-center gap-1 text-red-800 hover:text-red-900 text-xs">
+                                                    <x-heroicon-m-trash class="h-3.5 w-3.5" /> Supprimer
+                                                </button>
                                             </form>
                                         @endunless
                                     </td>
@@ -115,7 +117,43 @@
                 </div>
             </div>
 
-            <div class="page-fade-in bg-white shadow-sm sm:rounded-lg p-4" style="animation-delay: 2.0s">
+            <div class="sm:hidden page-fade-in space-y-3" style="animation-delay: 0.1s">
+                @foreach ($membres as $membre)
+                    <div class="bg-white shadow-sm rounded-lg p-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <p class="font-medium text-gray-900">{{ $membre->name }} @if ($membre->id === auth()->id()) <span class="text-gray-500 font-normal">(toi)</span> @endif</p>
+                                <p class="text-sm text-gray-600">{{ $membre->email }}</p>
+                            </div>
+                            @if ($membre->two_factor_enabled)
+                                <span class="shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-emerald-50 text-emerald-700">2FA activée</span>
+                            @else
+                                <span class="shrink-0 text-xs text-gray-500">2FA désactivée</span>
+                            @endif
+                        </div>
+                        <div class="flex items-center justify-between gap-2 mt-3 pt-3 border-t border-gray-100">
+                            <form method="POST" action="{{ route('membres.update', $membre) }}">
+                                @csrf @method('PATCH')
+                                <select name="role" onchange="this.form.submit()" class="rounded-md border-gray-300 shadow-sm text-xs">
+                                    <option value="membre" {{ $membre->role === 'membre' ? 'selected' : '' }}>Membre</option>
+                                    <option value="admin" {{ $membre->role === 'admin' ? 'selected' : '' }}>Administrateur</option>
+                                </select>
+                            </form>
+                            @unless ($membre->id === auth()->id())
+                                <form method="POST" action="{{ route('membres.destroy', $membre) }}"
+                                    onsubmit="return confirm('Supprimer {{ $membre->name }} ? Cette action est irréversible.');">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="inline-flex items-center gap-1 text-red-800 text-xs">
+                                        <x-heroicon-m-trash class="h-3.5 w-3.5" /> Supprimer
+                                    </button>
+                                </form>
+                            @endunless
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="page-fade-in bg-white shadow-sm rounded-lg p-4" style="animation-delay: 0.2s">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="font-semibold text-gray-800">Invitations</h3>
                     <form method="POST" action="{{ route('invitations.store') }}">
@@ -136,7 +174,7 @@
                                 <span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-600">Utilisée</span>
                                 <span class="text-gray-500">par {{ $invitation->utilisateur?->name ?? 'un compte supprimé' }} le {{ $invitation->used_at->format('d/m/Y') }}</span>
                             @elseif ($invitation->estValide())
-                                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-emerald-50 text-emerald-600">Active</span>
+                                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-emerald-50 text-emerald-700">Active</span>
                                 <span class="text-gray-500">expire le {{ $invitation->expires_at->format('d/m/Y H:i') }}, générée par {{ $invitation->createur?->name }}</span>
                                 <div class="mt-1">
                                     <input type="text" readonly onclick="this.select()" value="{{ route('register', ['token' => $invitation->token]) }}"

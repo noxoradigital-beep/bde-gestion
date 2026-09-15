@@ -48,10 +48,10 @@
     </g>
 </svg>
         </div>
-        <div class="flex justify-center gap-2 mt-4">
-            <a href="{{ route('etudiants.export') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50">Exporter (CSV)</a>
-            <a href="{{ route('etudiants.import') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50">Importer une liste</a>
-            <a href="{{ route('etudiants.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700">Ajouter un étudiant</a>
+        <div class="flex flex-wrap justify-center gap-2 mt-4 page-fade-in" style="animation-delay: 0.1s">
+            <a href="{{ route('etudiants.export') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50">Exporter (CSV)</a>
+            <a href="{{ route('etudiants.import') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50">Importer une liste</a>
+            <a href="{{ route('etudiants.create') }}" class="inline-flex items-center px-4 py-2 bg-bde-orange border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:brightness-95">Ajouter un étudiant</a>
         </div>
     </x-slot>
 
@@ -61,7 +61,7 @@
                 <div class="bg-green-50 text-green-800 text-sm rounded-md p-3">{{ session('status') }}</div>
             @endif
 
-            <div class="page-fade-in bg-white shadow-sm sm:rounded-lg p-4" style="animation-delay: 1.5s">
+            <div class="page-fade-in bg-white shadow-sm rounded-lg p-4" style="animation-delay: 0.2s">
                 <form method="GET" class="flex gap-2">
                     <input type="text" name="recherche" value="{{ request('recherche') }}" placeholder="Rechercher par nom, email, classe..."
                         class="flex-1 rounded-md border-gray-300 shadow-sm text-sm">
@@ -69,7 +69,9 @@
                 </form>
             </div>
 
-            <div class="page-fade-in bg-white shadow-sm sm:rounded-lg overflow-hidden" style="animation-delay: 1.6s">
+            {{-- Tableau : a partir de la taille tablette seulement (voir plus bas
+                 pour l'equivalent en cartes empilees sur telephone). --}}
+            <div class="hidden sm:block page-fade-in bg-white shadow-sm rounded-lg overflow-hidden" style="animation-delay: 0.3s">
                 <div class="fit-screen-table">
                     <table class="min-w-full divide-y divide-gray-200 text-sm">
                         <thead class="bg-gray-50">
@@ -92,22 +94,64 @@
                                     <td class="px-4 py-2 text-gray-600">{{ $etudiant->email }}</td>
                                     <td class="px-4 py-2 text-gray-600">{{ $etudiant->classe }}</td>
                                     <td class="px-4 py-2 text-gray-600">{{ $etudiant->option ?? 'Non renseignée' }}</td>
-                                    <td class="px-4 py-2 text-right space-x-2">
-                                        <a href="{{ route('etudiants.edit', $etudiant) }}" class="text-gray-500 hover:text-gray-800">Modifier</a>
+                                    <td class="px-4 py-2 text-right space-x-3">
+                                        <a href="{{ route('etudiants.edit', $etudiant) }}" class="inline-flex items-center gap-1 text-gray-500 hover:text-gray-800">
+                                            <x-heroicon-m-pencil-square class="h-4 w-4" /> Modifier
+                                        </a>
                                         <form action="{{ route('etudiants.destroy', $etudiant) }}" method="POST" class="inline" onsubmit="return confirm('Supprimer cet étudiant ?');">
                                             @csrf @method('DELETE')
-                                            <button type="submit" class="text-red-500 hover:text-red-700">Supprimer</button>
+                                            <button type="submit" class="inline-flex items-center gap-1 text-red-800 hover:text-red-900">
+                                                <x-heroicon-m-trash class="h-4 w-4" /> Supprimer
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="px-4 py-6 text-center text-gray-500">Aucun étudiant pour le moment.</td>
+                                    <td colspan="5" class="px-4 py-10 text-center text-gray-500">
+                                        <x-heroicon-o-users class="h-10 w-10 mx-auto mb-2 text-gray-300" />
+                                        Aucun étudiant pour le moment.
+                                    </td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            {{-- Cartes empilees : en dessous de la taille tablette, un tableau de
+                 5 colonnes n'a plus la place de respirer (colonnes ecrasees ou
+                 defilement horizontal qui coupe les lignes en deux). Une carte
+                 par etudiant, comme le reste du site. --}}
+            <div class="sm:hidden page-fade-in space-y-3" style="animation-delay: 0.3s">
+                @forelse ($etudiants as $etudiant)
+                    <div class="bg-white shadow-sm rounded-lg p-4">
+                        <div class="flex items-start justify-between gap-2">
+                            <a href="{{ route('etudiants.show', $etudiant) }}" class="font-medium text-gray-900">
+                                {{ $etudiant->nom }} {{ $etudiant->prenom }}
+                            </a>
+                            <span class="shrink-0 text-xs font-medium text-gray-600 bg-gray-100 rounded-full px-2 py-0.5">{{ $etudiant->classe }}</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1 truncate">{{ $etudiant->email }}</p>
+                        <p class="text-sm text-gray-500">{{ $etudiant->option ?? 'Option non renseignée' }}</p>
+                        <div class="flex items-center gap-4 mt-3 pt-3 border-t border-gray-100">
+                            <a href="{{ route('etudiants.edit', $etudiant) }}" class="inline-flex items-center gap-1 text-sm text-gray-600">
+                                <x-heroicon-m-pencil-square class="h-4 w-4" /> Modifier
+                            </a>
+                            <form action="{{ route('etudiants.destroy', $etudiant) }}" method="POST" onsubmit="return confirm('Supprimer cet étudiant ?');">
+                                @csrf @method('DELETE')
+                                <button type="submit" class="inline-flex items-center gap-1 text-sm text-red-800">
+                                    <x-heroicon-m-trash class="h-4 w-4" /> Supprimer
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @empty
+                    <div class="bg-white shadow-sm rounded-lg p-10 text-center text-gray-500">
+                        <x-heroicon-o-users class="h-10 w-10 mx-auto mb-2 text-gray-300" />
+                        Aucun étudiant pour le moment.
+                    </div>
+                @endforelse
             </div>
 
             {{ $etudiants->links() }}

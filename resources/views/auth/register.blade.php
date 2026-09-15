@@ -1,57 +1,137 @@
-<x-guest-layout>
-    @isset($token)
-        <p class="text-sm text-gray-600 mb-4">Tu as été invité(e) à rejoindre l'espace de gestion du BDE.</p>
-    @endisset
+<!--
+    PAGE D'INSCRIPTION (BDE)
+    Meme identite visuelle que la page de connexion (public/css/connexion.css,
+    public/js/connexion.js) : la personne invitee doit avoir l'impression de
+    rester dans le meme "monde" en passant de l'une a l'autre.
+-->
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Inscription — {{ config('app.name', 'Gestion BDE') }}</title>
 
-    <form method="POST" action="{{ route('register', ['token' => $token ?? null]) }}">
-        @csrf
+    {{-- Polices Google Fonts utilisées par connexion.css --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=Space+Mono&display=swap" rel="stylesheet">
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+    <link rel="stylesheet" href="{{ asset('css/connexion.css') }}">
+</head>
+<body>
+    <div class="bde-login">
+
+        {{-- Filtre invisible qui fait "fusionner" les cercles du fond entre eux --}}
+        <svg class="svg-filter-hidden">
+            <defs>
+                <filter id="bde-gooey">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix"
+                        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                        result="goo" />
+                    <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                </filter>
+            </defs>
+        </svg>
+
+        {{-- Décor animé : 8 cercles colorés, taille/position/couleur tirées au hasard à chaque visite --}}
+        <div class="stage">
+            @php
+                $couleursBde = ['#F7521C', '#EF3A2F', '#E52947', '#D52F5E', '#FCDDA9', '#4F116F'];
+            @endphp
+            @for ($i = 0; $i < 8; $i++)
+                @php
+                    $taille = random_int(180, 420);
+                    $positionGauche = random_int(0, 90);
+                    $positionHaut = random_int(0, 90);
+                    $delaiAnimation = -random_int(0, 20);
+                    $dureeAnimation = random_int(15, 30);
+                    $couleur = $couleursBde[$i % count($couleursBde)];
+                @endphp
+                <div class="blob"
+                     data-speed="{{ ($i + 1) * 16 }}"
+                     style="
+                        width: {{ $taille }}px;
+                        height: {{ $taille }}px;
+                        left: {{ $positionGauche }}%;
+                        top: {{ $positionHaut }}%;
+                        background: {{ $couleur }};
+                        animation-delay: {{ $delaiAnimation }}s;
+                        animation-duration: {{ $dureeAnimation }}s;
+                     "></div>
+            @endfor
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        {{-- Carte centrale : logo + titre + formulaire d'inscription --}}
+        <main class="auth-card">
+            <div class="logo-row">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo BDE">
+            </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <header class="header">
+                <span class="brand-id">ESGI B1 · Bureau des Étudiants</span>
+                <h1>Créer<br><span>un compte</span></h1>
+            </header>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+            {{-- Rappel que l'inscription se fait uniquement sur invitation --}}
+            @isset($token)
+                <div class="status-note">Tu as été invité(e) à rejoindre l'espace de gestion du BDE.</div>
+            @endisset
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+            {{-- Formulaire d'inscription : nom, email, mot de passe --}}
+            <form method="POST" action="{{ route('register', ['token' => $token ?? null]) }}" autocomplete="off">
+                @csrf
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input id="name" type="text" name="name" value="{{ old('name') }}" placeholder="Prénom Nom" required autofocus autocomplete="name">
+                    <div class="input-glow"></div>
+                    @error('name')
+                        <div class="field-error">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="prenom@esgi.fr" required autocomplete="username">
+                    <div class="input-glow"></div>
+                    @error('email')
+                        <div class="field-error">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input id="password" type="password" name="password" placeholder="••••••••" required autocomplete="new-password">
+                    <div class="input-glow"></div>
+                    @error('password')
+                        <div class="field-error">{{ $message }}</div>
+                    @enderror
+                </div>
 
-        {{-- Lien "déjà inscrit ?" : orange BDE au clic (focus) au lieu de l'indigo Tailwind par défaut --}}
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-bde-orange" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+                <div class="form-group">
+                    <label for="password_confirmation">Confirmer le mot de passe</label>
+                    <input id="password_confirmation" type="password" name="password_confirmation" placeholder="••••••••" required autocomplete="new-password">
+                    <div class="input-glow"></div>
+                    @error('password_confirmation')
+                        <div class="field-error">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+                <div class="submit-wrap">
+                    <button type="submit" class="btn-base">Créer le compte</button>
+                </div>
+            </form>
+
+            <footer class="footer-nav">
+                <a href="{{ route('login') }}">Déjà inscrit(e) ?</a>
+                <span>Connexion sécurisée</span>
+            </footer>
+        </main>
+    </div>
+
+    {{-- Effet souris sur les cercles du fond --}}
+    <script src="{{ asset('js/connexion.js') }}" defer></script>
+</body>
+</html>

@@ -6,7 +6,10 @@
 /* Couleurs officielles BDE, réutilisées partout ci-dessous */
 :root {
     --ink: #FCDDA9;
-    --ink-dim: rgba(252, 221, 169, 0.6);
+    /* Pleine opacite plutot que 0.6 : au 0.6 d'origine, les labels (EMAIL,
+       MOT DE PASSE...) tombaient sous le seuil de contraste lisible des
+       qu'on tombait sur la partie corail/orange du degrade anime. */
+    --ink-dim: #FCDDA9;
     --orange: #F7521C;
     --corail: #EF3A2F;
     --rose: #E52947;
@@ -267,7 +270,8 @@ html, body {
 .footer-nav a:hover { color: var(--orange); }
 
 .footer-nav span {
-    color: rgba(252, 221, 169, 0.35);
+    color: var(--ink-dim);
+    opacity: 0.75;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -276,4 +280,12 @@ html, body {
 @media (max-width: 480px) {
     .auth-card { padding: 32px 24px; }
     .header h1 { font-size: 2rem; }
+
+    /* La moitie des cercles animes/flous en moins : sur telephone, ce decor
+       (8 cercles + filtre "gooey" + flou, tous animes en boucle) pese plus
+       lourd sur le GPU que sur un ordinateur, sans vraiment se voir en plus
+       sur un aussi petit ecran. */
+    .stage .blob:nth-child(n + 5) {
+        display: none;
+    }
 }
