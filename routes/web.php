@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('/membres', [MembreController::class, 'index'])->name('membres.index');
         Route::patch('/membres/{membre}', [MembreController::class, 'update'])->name('membres.update');
+        Route::delete('/membres/{membre}', [MembreController::class, 'destroy'])->name('membres.destroy');
         Route::post('/invitations', [InvitationController::class, 'store'])->name('invitations.store');
     });
 });

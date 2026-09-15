@@ -40,4 +40,25 @@ class MembreController extends Controller
 
         return redirect()->route('membres.index')->with('status', 'Rôle mis à jour.');
     }
+
+    // Supprime un membre BDE.
+    public function destroy(Request $request, User $membre): RedirectResponse
+    {
+        if ($membre->id === $request->user()->id) {
+            return back()->withErrors(['membre' => 'Impossible de te supprimer toi-même.']);
+        }
+
+        // Garde-fou : ne pas pouvoir supprimer le dernier administrateur.
+        if ($membre->isAdmin()) {
+            $autresAdmins = User::where('role', 'admin')->where('id', '!=', $membre->id)->exists();
+
+            if (! $autresAdmins) {
+                return back()->withErrors(['membre' => 'Impossible de supprimer le dernier administrateur.']);
+            }
+        }
+
+        $membre->delete();
+
+        return redirect()->route('membres.index')->with('status', 'Membre supprimé.');
+    }
 }

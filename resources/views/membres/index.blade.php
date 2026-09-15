@@ -20,6 +20,7 @@
                             <th class="px-4 py-2 text-left font-medium text-gray-500">Email</th>
                             <th class="px-4 py-2 text-left font-medium text-gray-500">2FA</th>
                             <th class="px-4 py-2 text-left font-medium text-gray-500">Rôle</th>
+                            <th class="px-4 py-2"></th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
@@ -36,6 +37,15 @@
                                             <option value="admin" {{ $membre->role === 'admin' ? 'selected' : '' }}>Administrateur</option>
                                         </select>
                                     </form>
+                                </td>
+                                <td class="px-4 py-2 text-right">
+                                    @unless ($membre->id === auth()->id())
+                                        <form method="POST" action="{{ route('membres.destroy', $membre) }}"
+                                            onsubmit="return confirm('Supprimer {{ $membre->name }} ? Cette action est irréversible.');">
+                                            @csrf @method('DELETE')
+                                            <button type="submit" class="text-red-500 hover:text-red-700 text-xs">Supprimer</button>
+                                        </form>
+                                    @endunless
                                 </td>
                             </tr>
                         @endforeach
