@@ -1,6 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Fond degrade anime BDE (violet -> fuchsia -> corail -> orange), derriere
+   toutes les pages de l'appli. Le degrade est 4x plus large que l'ecran et
+   on fait glisser sa position en boucle : aucune librairie, juste du CSS. */
+body {
+    background-color: #fdf4ec;
+    background-image: linear-gradient(120deg, #4F116F, #D52F5E, #EF3A2F, #F7521C, #D52F5E, #4F116F);
+    background-size: 400% 400%;
+    animation: bde-bg-shift 30s ease-in-out infinite;
+}
+
+@keyframes bde-bg-shift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
  @font-face {
     font-family: 'Figtree';
     font-weight: 400;
