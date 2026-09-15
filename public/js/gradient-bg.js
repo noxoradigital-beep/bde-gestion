@@ -11,7 +11,8 @@
     // le fond de secours defini dans app.css (couleur unie) reste affiche.
     var canvas = document.createElement('canvas');
     canvas.id = 'bde-gradient-bg';
-    canvas.style.cssText = 'position:fixed;inset:0;z-index:-1;width:100%;height:100%;display:block;';
+    // filter: sature les couleurs que le shader produit (evite l'effet "delave")
+    canvas.style.cssText = 'position:fixed;inset:0;z-index:-1;width:100%;height:100%;display:block;filter:saturate(1.9) contrast(1.08);';
     document.body.prepend(canvas);
 
     var gl = canvas.getContext('webgl2', { premultipliedAlpha: true, alpha: true, antialias: true });
@@ -20,16 +21,16 @@
     // ----- Reglages du degrade (nos 3 couleurs BDE + forme/mouvement) -----
     var params = {
         color1: hexToRgba('#4F116F'), // violet, couleur de base
-        color2: hexToRgba('#D52F5E'), // fuchsia, couleur du milieu
+        color2: hexToRgba('#EF3A2F'), // rouge corail, couleur du milieu (plus vive que le fuchsia entre violet et orange)
         color3: hexToRgba('#F7521C'), // orange, couleur d'accent
         rotation: 110,
         proportion: 0.55,
         scale: 0.5,
         speed: 18,       // vitesse de l'animation
-        distortion: 0.12,
-        swirl: 0.35,     // tourbillon : donne l'aspect "organique"
-        swirlIterations: 8,
-        softness: 1,     // 1 = transitions tres douces entre les couleurs
+        distortion: 0.02, // presque plus de "grain" entre les couleurs
+        swirl: 0.12,      // tourbillon discret, evite les zones melangees
+        swirlIterations: 6,
+        softness: 0.08,   // transitions nettes (avant 1 = tout delave)
         shape: 2,        // 2 = "Edge" (vagues douces, comme un fondu)
         shapeSize: 0.4,
     };
