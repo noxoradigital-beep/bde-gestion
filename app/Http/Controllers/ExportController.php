@@ -15,7 +15,7 @@ class ExportController extends Controller
         return $this->exporterCsv('etudiants.csv', ['Nom', 'Prénom', 'Email', 'Classe', 'Option'], function ($sortie) {
             Etudiant::orderBy('nom')->chunk(200, function ($etudiants) use ($sortie) {
                 foreach ($etudiants as $etudiant) {
-                    fputcsv($sortie, [$etudiant->nom, $etudiant->prenom, $etudiant->email, $etudiant->classe, $etudiant->option]);
+                    fputcsv($sortie, [$etudiant->nom, $etudiant->prenom, $etudiant->email, $etudiant->classe, $etudiant->option], escape: '\\');
                 }
             });
         });
@@ -36,7 +36,7 @@ class ExportController extends Controller
                         $evenement->lieu,
                         $evenement->etudiants_count,
                         $evenement->presents_count,
-                    ]);
+                    ], escape: '\\');
                 }
             });
         });
@@ -54,7 +54,7 @@ class ExportController extends Controller
                     $etudiant->classe,
                     $etudiant->pivot->paye ? 'Oui' : 'Non',
                     $etudiant->pivot->paye ? number_format((float) $evenement->prix, 2, ',', '') : '',
-                ]);
+                ], escape: '\\');
             }
         });
     }
@@ -65,7 +65,7 @@ class ExportController extends Controller
         $callback = function () use ($entetes, $ecrireLignes) {
             $sortie = fopen('php://output', 'w');
             fwrite($sortie, "\xEF\xBB\xBF"); // BOM UTF-8 pour Excel
-            fputcsv($sortie, $entetes);
+            fputcsv($sortie, $entetes, escape: '\\');
             $ecrireLignes($sortie);
             fclose($sortie);
         };

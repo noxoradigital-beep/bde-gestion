@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Etudiant;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 // Import d'une liste d'étudiants depuis un fichier CSV.
@@ -30,7 +31,13 @@ class ImportController extends Controller
         $handle = fopen($chemin, 'r');
 
         // Première ligne du fichier = les noms de colonnes (nom, prenom, email, classe, option).
-        $entetes = array_map('strtolower', fgetcsv($handle, escape: '\\') ?: []);
+        // Str::ascii() enleve les accents ("Prénom" -> "Prenom") et le BOM UTF-8 ("\xEF\xBB\xBFNom" -> "Nom") :
+        // sans ca, reimporter le CSV qu'on vient d'exporter (colonne "Prénom", BOM en tete pour Excel)
+        // echouait ligne par ligne, "prenom"/"nom" ne matchant jamais les cles reelles du tableau.
+        $entetes = array_map(
+            fn ($colonne) => Str::of($colonne)->ascii()->lower()->trim()->toString(),
+            fgetcsv($handle, escape: '\\') ?: []
+        );
         $colonnesAttendues = ['nom', 'prenom', 'email', 'classe', 'option'];
 
         $importes = 0;
