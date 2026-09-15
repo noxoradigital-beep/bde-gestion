@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<Etudiant>
  */
+// Génère de faux étudiants pour les tests et les données de démo (jamais de vraies infos).
 class EtudiantFactory extends Factory
 {
     /**

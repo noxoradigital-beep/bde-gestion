@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// Crée la table "invitations" : les liens d'inscription à usage unique générés par les admins.
 return new class extends Migration
 {
     /**

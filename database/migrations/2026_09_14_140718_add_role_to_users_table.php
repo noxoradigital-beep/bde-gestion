@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// Ajoute le rôle (admin ou membre) sur les comptes utilisateurs. Membre par défaut.
 return new class extends Migration
 {
     /**

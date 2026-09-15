@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// Ajoute "paye" (a payé ou non) sur une participation, pour les événements payants.
 return new class extends Migration
 {
     /**

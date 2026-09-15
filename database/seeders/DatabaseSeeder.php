@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database with fake demo data (no real student data).
      */
+    // Commande : php artisan db:seed. Crée un compte de démo admin, 30 faux étudiants,
+    // et 5 faux événements avec des participants tirés au sort dessus.
     public function run(): void
     {
         $membreBde = User::factory()->create([
@@ -26,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $etudiants = Etudiant::factory(30)->create();
 
         Evenement::factory(5)->create(['cree_par' => $membreBde->id])->each(function (Evenement $evenement) use ($etudiants) {
+            // Pour chaque événement : entre 5 et 15 participants au hasard, présence/paiement aléatoires.
             $participants = $etudiants->random(random_int(5, 15));
             $payant = (bool) random_int(0, 1);
 

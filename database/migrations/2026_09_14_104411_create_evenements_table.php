@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// Crée la table "evenements" (nom, date, lieu, description, capacité, créateur).
 return new class extends Migration
 {
     /**

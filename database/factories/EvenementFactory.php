@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<Evenement>
  */
+// Génère de faux événements pour les tests et les données de démo.
 class EvenementFactory extends Factory
 {
     /**
