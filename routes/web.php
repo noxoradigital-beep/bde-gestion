@@ -11,6 +11,8 @@ use App\Http\Controllers\ParticipationController;
 use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatistiqueController;
+use App\Models\Etudiant;
+use App\Models\Evenement;
 use Illuminate\Support\Facades\Route;
 
 // Page d'accueil : redirige direct vers le dashboard (si connecté) ou le login.
@@ -18,8 +20,17 @@ Route::get('/', function () {
     return redirect()->to(auth()->check() ? route('dashboard') : route('login'));
 });
 
+// Vue d'ensemble : chiffres cles + prochains evenements (mêmes donnees que Statistiques).
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', [
+        'totalEtudiants' => Etudiant::count(),
+        'totalEvenements' => Evenement::count(),
+        'prochainsEvenements' => Evenement::withCount('etudiants')
+            ->where('date', '>=', now())
+            ->orderBy('date')
+            ->limit(5)
+            ->get(),
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Défi 2FA présenté après un mot de passe valide, avant que la session ne soit ouverte.

@@ -26,8 +26,19 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
 
+/* Pastille blanche derriere le logo : le trait fin du logo se voyait mal
+   directement sur le fond colore translucide, il faut un fond clair et net. */
+.site-header__logo {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 6px 14px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
 .site-header__logo img {
-    height: 56px;
+    height: 48px;
     width: auto;
     object-fit: contain;
 }

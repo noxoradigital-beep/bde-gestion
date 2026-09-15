@@ -10,6 +10,10 @@ body {
     background-image: linear-gradient(135deg, #4F116F 0%, #D52F5E 40%, #EF3A2F 75%, #F7521C 100%);
     background-size: 400% 400%;
     animation: bde-bg-shift 18s ease-in-out infinite;
+    /* --bde-bg-delay est calcule dans <head> (voir app.blade.php/guest.blade.php)
+       pour que le degrade continue au meme endroit d'une page a l'autre, au lieu
+       de repartir de zero a chaque clic. */
+    animation-delay: var(--bde-bg-delay, 0s);
 }
 
 @keyframes bde-bg-shift {

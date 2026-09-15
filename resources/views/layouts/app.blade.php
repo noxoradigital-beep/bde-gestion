@@ -9,6 +9,12 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        {{-- Cale le fond anime sur l'heure reelle, pour qu'il continue au meme
+             endroit d'une page a l'autre au lieu de repartir de zero a chaque clic. --}}
+        <script>
+            document.documentElement.style.setProperty('--bde-bg-delay', '-' + ((Date.now() / 1000) % 18) + 's');
+        </script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100/40">
