@@ -19,7 +19,7 @@ export default {
                     orange: '#F7521C',
                     corail: '#EF3A2F',
                     rose: '#E52947',
-                    fuchsia: '#D51F5E',
+                    fuchsia: '#D52F5E',
                     violet: '#4F116F',
                     creme: '#FCDDA9',
                 },

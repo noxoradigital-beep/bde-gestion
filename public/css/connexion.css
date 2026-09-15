@@ -1,0 +1,279 @@
+/* ==========================================================
+   STYLE DE LA PAGE DE CONNEXION (login.blade.php)
+   Un seul fichier, pas de build : modifie et recharge la page.
+   ========================================================== */
+
+/* Couleurs officielles BDE, réutilisées partout ci-dessous */
+:root {
+    --ink: #FCDDA9;
+    --ink-dim: rgba(252, 221, 169, 0.6);
+    --orange: #F7521C;
+    --corail: #EF3A2F;
+    --rose: #E52947;
+    --fuchsia: #D52F5E;
+    --violet: #4F116F;
+    --creme: #FCDDA9;
+    --filter-goo: url('#bde-gooey');
+}
+
+* { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+/* Fond dégradé plein écran (violet -> fuchsia -> corail -> orange) */
+html, body {
+    margin: 0;
+    height: 100%;
+    background: linear-gradient(135deg, var(--violet) 0%, var(--fuchsia) 35%, var(--corail) 70%, var(--orange) 100%);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Conteneur plein écran qui centre la carte de connexion */
+.bde-login {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* ----- DÉCOR ANIMÉ : les cercles colorés flous qui bougent ----- */
+
+/* Zone où vivent les cercles animés, derrière la carte */
+.stage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    filter: var(--filter-goo); /* fusionne les cercles proches entre eux (effet "lave") */
+    opacity: 0.9;
+}
+
+/* Un cercle : couleur + position + taille définies en PHP dans le .blade.php */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(16px);
+    animation: float 22s infinite alternate ease-in-out; /* dérive lente en boucle */
+    transition: margin 0.15s ease-out; /* suit la souris en douceur, voir connexion.js */
+}
+
+/* Trajet que suit chaque cercle pendant son animation */
+@keyframes float {
+    0%   { transform: translate(0, 0) scale(1); }
+    33%  { transform: translate(8vw, 14vh) scale(1.15); }
+    66%  { transform: translate(-5vw, 8vh) scale(0.85); }
+    100% { transform: translate(5vw, -8vh) scale(1.05); }
+}
+
+/* Élément technique invisible qui définit l'effet "fusion" (filter: goo) */
+.svg-filter-hidden { position: absolute; width: 0; height: 0; }
+
+/* ----- CARTE DE CONNEXION (le bloc au centre) ----- */
+
+.auth-card {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 420px;
+    padding: 44px 40px;
+    background: rgba(79, 17, 111, 0.35); /* verre teinté violet, laisse voir le fond */
+    border: 1px solid rgba(252, 221, 169, 0.35);
+    border-radius: 24px;
+    backdrop-filter: blur(20px); /* effet "verre dépoli" */
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+                0 30px 40px rgba(213, 47, 94, 0.35),
+                0 10px 60px rgba(247, 82, 28, 0.35); /* lueur colorée autour de la carte */
+}
+
+/* Logo centré, taille qui s'adapte automatiquement à l'écran (petit sur mobile) */
+.logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.logo-row img {
+    height: clamp(90px, 22vw, 136px); /* jamais plus petit que 90px, jamais plus grand que 136px */
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(88%) sepia(20%) saturate(487%) hue-rotate(342deg) brightness(101%) contrast(96%); /* recolore le logo en crème */
+}
+
+.brand-id {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--creme);
+    opacity: 0.75;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.header h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+    line-height: 0.95;
+    letter-spacing: -1.5px;
+    margin: 0 0 36px;
+    color: #fff;
+}
+
+/* "Membres" en dégradé de couleur (le mot dans le <span>) */
+.header h1 span {
+    background: linear-gradient(90deg, var(--orange), var(--fuchsia));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Message affiché après une action réussie (ex : mot de passe changé) */
+.status-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--creme);
+    background: rgba(247, 82, 28, 0.18);
+    border: 1px solid rgba(247, 82, 28, 0.4);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 24px;
+}
+
+/* ----- CHAMPS DU FORMULAIRE (email / mot de passe) ----- */
+
+.form-group {
+    position: relative;
+    margin-bottom: 28px;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.form-group:focus-within { transform: translateX(8px); } /* léger décalage quand on clique dedans */
+
+.form-group label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(252, 221, 169, 0.3);
+    color: #fff;
+    padding: 10px 0;
+    font-size: 17px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+}
+
+.form-group input::placeholder { color: rgba(252, 221, 169, 0.35); }
+
+/* Barre lumineuse sous le champ, qui apparaît quand on clique dedans */
+.input-glow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--orange), var(--fuchsia));
+    transition: width 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    box-shadow: 0 0 14px var(--orange);
+}
+
+.form-group input:focus + .input-glow { width: 100%; }
+
+/* Message d'erreur sous un champ (ex : mauvais mot de passe) */
+.field-error {
+    margin-top: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #ffd0d0;
+}
+
+/* Case "se souvenir de moi" */
+.remember-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: -8px 0 32px;
+}
+
+.remember-row input {
+    accent-color: var(--orange);
+    width: 15px;
+    height: 15px;
+}
+
+.remember-row label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ----- BOUTON "SE CONNECTER" ----- */
+
+.submit-wrap { position: relative; }
+
+.btn-base {
+    background: linear-gradient(90deg, var(--orange), var(--fuchsia));
+    color: #fff;
+    border: none;
+    padding: 18px 36px;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 50px;
+    transition: letter-spacing 0.3s, filter 0.3s, transform 0.3s;
+}
+
+.btn-base:hover {
+    letter-spacing: 3.5px;
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+/* ----- LIENS EN BAS DE CARTE ----- */
+
+.footer-nav {
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+}
+
+.footer-nav a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.footer-nav a:hover { color: var(--orange); }
+
+.footer-nav span {
+    color: rgba(252, 221, 169, 0.35);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Ajustements sur petit écran (téléphone) */
+@media (max-width: 480px) {
+    .auth-card { padding: 32px 24px; }
+    .header h1 { font-size: 2rem; }
+}
