@@ -29,7 +29,5 @@
             </main>
         </div>
 
-        {{-- Fond anime en WebGL, voir public/js/gradient-bg.js --}}
-        <script src="{{ asset('js/gradient-bg.js') }}" defer></script>
     </body>
 </html>

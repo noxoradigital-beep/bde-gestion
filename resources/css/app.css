@@ -2,11 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fond anime BDE : peint par public/js/gradient-bg.js (WebGL), qui ajoute
-   un <canvas> derriere la page. Cette couleur unie ne sert que de secours
-   si le navigateur ne supporte pas WebGL2 (tres rare). */
+/* Fond anime BDE : meme degrade que le menu plein ecran (violet -> fuchsia
+   -> corail -> orange, en diagonale), mais en boucle : le degrade est peint
+   4x plus grand que l'ecran et sa position glisse doucement. */
 body {
-    background-color: #4F116F;
+    background-color: #fdf4ec;
+    background-image: linear-gradient(135deg, #4F116F 0%, #D52F5E 40%, #EF3A2F 75%, #F7521C 100%);
+    background-size: 400% 400%;
+    animation: bde-bg-shift 18s ease-in-out infinite;
+}
+
+@keyframes bde-bg-shift {
+    0%   { background-position: 0% 0%; }
+    50%  { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
 }
 
 /* Effet "verre depoli" (glassmorphism) : toutes les cartes/blocs du site
