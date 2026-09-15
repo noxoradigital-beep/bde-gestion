@@ -7,7 +7,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
 use App\Http\Middleware\SecurityHeaders;
 
-withMiddleware(function (Middleware $middleware): void {
+->withMiddleware(function (Middleware $middleware): void {
     $middleware->trustProxies(at: '*');
     $middleware->web(append: [SecurityHeaders::class]);
     $middleware->alias([
