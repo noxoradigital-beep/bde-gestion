@@ -14,6 +14,9 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            // Couleurs officielles du BDE. Utilisables partout avec bg-bde-orange,
+            // text-bde-violet, border-bde-rose, etc. (à la place des couleurs
+            // par défaut de Tailwind comme indigo-500 ou red-600).
             colors: {
                 bde: {
                     orange: '#F7521C',

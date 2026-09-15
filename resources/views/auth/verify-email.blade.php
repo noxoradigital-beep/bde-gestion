@@ -20,6 +20,7 @@
             </div>
         </form>
 
+        {{-- Bouton "Se déconnecter" : orange BDE au clic (focus) --}}
         <form method="POST" action="{{ route('logout') }}">
             @csrf
 
