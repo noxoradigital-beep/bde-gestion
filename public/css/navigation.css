@@ -1,0 +1,222 @@
+/* ==========================================================
+   MENU PLEIN ECRAN (navigation.blade.php)
+   Barre du haut classique + un bouton qui ouvre un menu qui
+   recouvre tout l'ecran, dans le meme esprit que la page login.
+   ========================================================== */
+
+:root {
+    --nav-orange: #F7521C;
+    --nav-corail: #EF3A2F;
+    --nav-fuchsia: #D52F5E;
+    --nav-violet: #4F116F;
+    --nav-creme: #FCDDA9;
+}
+
+/* ----- Barre du haut (toujours visible) ----- */
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 0 24px;
+    background: #fff;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.site-header__logo img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Bouton "Menu" : devient "Fermer" quand le menu est ouvert (voir navigation.js) */
+.nav-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 999px;
+    background: var(--nav-orange);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.nav-toggle-btn:hover { filter: brightness(1.08); }
+
+.nav-toggle-btn__icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    position: relative;
+}
+
+.nav-toggle-btn__icon span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: currentColor;
+    transition: transform 0.25s, opacity 0.25s;
+}
+
+.nav-toggle-btn__icon span:nth-child(1) { top: 3px; }
+.nav-toggle-btn__icon span:nth-child(2) { bottom: 3px; }
+
+/* Quand le menu est ouvert, les 2 barres forment une croix */
+.nav-overlay.is-open ~ .site-header .nav-toggle-btn__icon span:nth-child(1) {
+    transform: translateY(4px) rotate(45deg);
+}
+.nav-overlay.is-open ~ .site-header .nav-toggle-btn__icon span:nth-child(2) {
+    transform: translateY(-4px) rotate(-45deg);
+}
+
+/* ----- Menu plein ecran ----- */
+
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 24px;
+    background: linear-gradient(135deg, var(--nav-violet) 0%, var(--nav-fuchsia) 40%, var(--nav-corail) 75%, var(--nav-orange) 100%);
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}
+
+.nav-overlay.is-open {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+
+/* Cercles flous decoratifs, purement visuels (memes couleurs que le login) */
+.nav-overlay__blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.nav-overlay__close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.nav-overlay__links {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 720px;
+}
+
+.nav-overlay__links li {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+/* Chaque lien apparait un peu apres le precedent (effet de vague) */
+.nav-overlay.is-open .nav-overlay__links li {
+    opacity: 1;
+    transform: translateY(0);
+}
+.nav-overlay__links li:nth-child(1) { transition-delay: 0.05s; }
+.nav-overlay__links li:nth-child(2) { transition-delay: 0.1s; }
+.nav-overlay__links li:nth-child(3) { transition-delay: 0.15s; }
+.nav-overlay__links li:nth-child(4) { transition-delay: 0.2s; }
+.nav-overlay__links li:nth-child(5) { transition-delay: 0.25s; }
+
+.nav-overlay__link {
+    display: block;
+    padding: 10px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    letter-spacing: -1px;
+    transition: color 0.2s;
+}
+
+.nav-overlay__link:hover,
+.nav-overlay__link--active {
+    color: #fff;
+}
+
+.nav-overlay__link--active {
+    text-decoration: underline;
+    text-decoration-color: var(--nav-creme);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 10px;
+}
+
+.nav-overlay__footer {
+    position: relative;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 720px;
+}
+
+.nav-overlay__user {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--nav-creme);
+}
+
+.nav-overlay__user span {
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-overlay__actions {
+    display: flex;
+    gap: 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-overlay__actions a,
+.nav-overlay__actions button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
+    font: inherit;
+}
+
+@media (max-width: 480px) {
+    .site-header { padding: 0 16px; }
+    .nav-overlay { padding: 32px 16px; }
+}
