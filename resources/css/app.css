@@ -5,17 +5,17 @@
     font-family: 'Figtree';
     font-weight: 400;
     font-display: swap;
-    src: url('/fonts/figtree-400-normal.woff2') format('woff2');
+    src: url('/font/figtree-latin-400-normal.woff2') format('woff2');
 }
  @font-face {
     font-family: 'Figtree';
     font-weight: 500;
     font-display: swap;
-    src: url('/fonts/figtree-500-normal.woff2') format('woff2');
+    src: url('/font/figtree-latin-500-normal.woff2') format('woff2');
 }
  @font-face {
     font-family: 'Figtree';
     font-weight: 600;
     font-display: swap;
-    src: url('/fonts/figtree-600-normal.woff2') format('woff2');
+    src: url('/font/figtree-latin-600-normal.woff2') format('woff2');
 }
