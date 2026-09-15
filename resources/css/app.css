@@ -9,6 +9,18 @@ body {
     background-color: #4F116F;
 }
 
+/* Effet "verre depoli" (glassmorphism) : toutes les cartes/blocs du site
+   utilisent la classe Tailwind bg-white (fond blanc plein). Cette regle,
+   placee apres @tailwind utilities, la remplace partout par un blanc
+   transparent + flou, pour laisser passer le fond anime derriere tout
+   en gardant le texte bien lisible. */
+.bg-white {
+    background-color: rgba(255, 255, 255, 0.55) !important;
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
  @font-face {
     font-family: 'Figtree';
     font-weight: 400;
